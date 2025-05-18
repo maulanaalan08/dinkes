@@ -118,6 +118,7 @@
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <button type="submit" class="btn btn-danger">Delete</button>
                                                 </form>
+                                                <a href="{{ route('berita.edit', $b->id_berita) }}" class="btn btn-warning">Edit</a>
                                             </td>
                                         </tr>
                                         @endforeach

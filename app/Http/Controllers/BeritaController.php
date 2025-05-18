@@ -7,33 +7,17 @@ use App\Berita;
 
 class BeritaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $berita = Berita::paginate(5);
         return view('user.berita', compact('berita'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('user.add-berita');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -64,46 +48,46 @@ class BeritaController extends Controller
         return redirect()->route('berita.index')->with('success', 'Data berhasil disimpan.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $berita = Berita::findOrFail($id);
+        return view('user.edit-berita', compact('berita'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'judul' => 'required|string|max:255',
+            'detail' => 'required|string',
+            'jenis_berita' => 'required|string',
+            'gambar'    => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $berita = Berita::find($id);
+
+        // Proses upload gambar jika ada file baru
+        if ($request->hasFile('gambar')) {
+            // hapus gambar lama jika ada
+            if ($berita->gambar && file_exists(public_path('berita/' . $berita->gambar))) {
+                unlink(public_path('berita/' . $berita->gambar));
+            }
+
+            $file = $request->file('gambar');
+            $gambarFileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('berita'), $gambarFileName);
+            $berita->gambar = $gambarFileName;
+        }
+
+
+        $berita->judul = $request->judul;
+        $berita->detail = $request->detail;
+        $berita->jenis_berita = $request->jenis_berita;
+        $berita->save();
+
+        return redirect()->route('berita.index')->with('success', 'Data berhasil diperbarui');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $berita = Berita::find($id);
