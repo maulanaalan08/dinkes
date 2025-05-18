@@ -23,8 +23,6 @@ class LayananController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-        // Validasi input
         $this->validate($request, [
             'judul'   => 'required|string|max:255',
             'detail'  => 'required|string|max:255',

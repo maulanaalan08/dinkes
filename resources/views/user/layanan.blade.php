@@ -48,6 +48,12 @@
                     <span>Layanan</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="/puskesmas">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Puskesmas</span></a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

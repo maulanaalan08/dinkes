@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PenggunaController;
+use App\http\Controllers\PuskesmasController;
 
 
 
@@ -34,6 +35,11 @@ Route::put('/layanan/update/{id}', 'LayananController@update')->name('layanan.up
 Route::get('/layanan/admin', 'AdminController@index')->name('layanan.admin');
 Route::post('/layanan/status/{id}', 'AdminController@aprove')->name('layanan.aprove');
 
+
+//Puskesmas
+Route::get('/kesmas', 'PuskesmasController@index')->name('puskesmas.index');
+Route::get('/puskesmas/store', 'PuskesmasController@create')->name('puskesmas.store');
+Route::post('/puskesmas/create', 'PuskesmasController@store')->name('puskesmas.create');
 
 
 Auth::routes();

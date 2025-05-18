@@ -50,6 +50,12 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Layanan</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/puskesmas">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Puskesmas</span></a>
+            </li>
             
 
             <!-- Divider -->
@@ -77,24 +83,24 @@
                     
 
                     <!-- body -->
-                    <form method="post" action="{{ route('layanan.create') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('puskesmas.create') }}" enctype="multipart/form-data">
                         {{ csrf_field() }} <!-- CSRF token wajib di Laravel 5.3 -->
 
                         <!-- Judul Buku -->
                         <div class="mb-3">
-                            <label for="judul" class="form-label">Judul Layanan</label>
-                            <input type="text" class="form-control" id="judul" name="judul" placeholder="Contoh: Harry Potter">
+                            <label for="tempat" class="form-label">Tempat Puskesmas</label>
+                            <input type="text" class="form-control" id="tempat" name="tempat" placeholder="Contoh: Harry Potter">
                         </div>
 
                         <!-- Deskripsi -->
                         <div class="mb-3">
-                            <label for="detail" class="form-label">Detail Layanan</label>
+                            <label for="detail" class="form-label">Detail Puskesmas</label>
                             <input type="text" class="form-control" id="detail" name="detail" placeholder="Contoh: Buku Bagus">
                         </div>
 
                         <!-- Gambar -->
                         <div class="mb-3">
-                            <label for="formFile" class="form-label">Gambar Layanan</label>
+                            <label for="formFile" class="form-label">Gambar Puskesmas</label>
                             <input type="file" class="form-control" id="formFile" name="gambar" placeholder="Contoh: Baik, Buruk">
                         </div>
 
