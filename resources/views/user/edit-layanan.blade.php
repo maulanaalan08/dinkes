@@ -2,20 +2,24 @@
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dinas Kesehatan Surabaya</title>
+    <title>SB Admin 2 - Tables</title>
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template   -->
+    <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -31,11 +35,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/layanan">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/indexBuku">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Dinas Kesehatan Surabaya </div>
+                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
             </a>
 
             <!-- Divider -->
@@ -43,9 +47,14 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/layanan">
+                <a class="nav-link" href="/indexBuku">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Layanan</span></a>
+                    <span>Buku</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/indexLagu">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Lagu</span></a>
             </li>
 
             <!-- Divider -->
@@ -69,58 +78,45 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tabel Layanan</h1>
-                    <p class="mb-4">Ini adalah dashboard untuk Tabel Layanan.</p>
+                    <h1 class="h3 mb-2 text-gray-800">Edit Buku</h1>
+                    <p class="mb-4">Deskripsi di sini <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Data Layanan</h6>
+                    <!-- body -->
+                    <form action="{{ route('layanan.update', $layanan->id_layanan) }}" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        {{ method_field('PUT') }} <!-- CSRF token wajib di Laravel 5.3 -->
+
+                        <input type="hidden" name="id_layanan" value="{{ $layanan->i_layanan }}">
+
+                        <!-- Judul -->
+                        <div class="mb-3">
+                            <label>Judul Buku</label>
+                            <input type="text" class="form-control" name="judul" value="{{ $layanan->judul }}">
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Judul Layanan</th>
-                                            <th>Deskripsi Layanan</th>
-                                            <th>Gambar Layanan</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($layanan as $b)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $b->judul }}</td>
-                                            <td>{{ $b->detail }}</td>
-                                            <td>
-                                                @if($b->gambar)
-                                                <img src="{{ asset('uploads/' . $b->gambar) }}" width="100" alt="gambar">
-                                                @else
-                                                Tidak ada gambar
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <form action="{{ route('layanan.destroy', $b->id_layanan) }}" method="POST">
-                                                    {{ csrf_field() }}
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
-                                                <a href="{{ route('layanan.edit', $b->id_layanan) }}" class="btn btn-warning">Edit</a>
 
-
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                    <a href="/layanan/store" class="btn btn-primary">Tambah</a>
-                                </table>
-                            </div>
+                        <!-- Deskripsi -->
+                        <div class="mb-3">
+                            <label>Detail</label>
+                            <input type="text" class="form-control" name="detail" value="{{ $layanan->detail }}">
                         </div>
-                        {{ $layanan->links() }}
-                    </div>
+
+                        <!-- Gambar (baru) -->
+                        <div class="mb-3">
+                            <label>Upload Gambar Baru (opsional)</label>
+                            <input type="file" class="form-control" name="gambar">
+                        </div>
+
+                        <!-- Gambar lama (preview) -->
+                        <div class="mb-3">
+                            <label>Gambar Sekarang</label><br>
+                            <img src="{{ asset('uploads/' . $layanan->gambar) }}" width="120">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+
+                    <!-- end body -->
 
                 </div>
                 <!-- /.container-fluid -->
@@ -150,7 +146,8 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

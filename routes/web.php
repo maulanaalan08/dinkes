@@ -28,6 +28,9 @@ Route::get('/layanan/store', 'LayananController@create')->name('layanan.store');
 Route::post('/layanan/create', 'LayananController@store')->name('layanan.create');
 
 Route::delete('/layanan/delete{id}', 'LayananController@destroy')->name('layanan.destroy');
+Route::get('/layanan/edit/{id}', 'LayananController@edit')->name('layanan.edit');
+Route::put('/layanan/update/{id}', 'LayananController@update')->name('layanan.update');
+
 
 Auth::routes();
 
