@@ -119,6 +119,12 @@
                                                     <button type="submit" class="btn btn-danger">Delete</button>
                                                 </form>
                                                 <a href="{{ route('berita.edit', $b->id_berita) }}" class="btn btn-warning">Edit</a>
+                                                <form action="{{ route('berita.setuju', $b->id_berita) }}" method="POST" style="display:inline;">
+                                                    {{ csrf_field() }}
+                                                    <button type="submit" class="btn btn-sm btn-{{ $b->status === 'active' ? 'success' : 'secondary' }}">
+                                                        {{ $b->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach

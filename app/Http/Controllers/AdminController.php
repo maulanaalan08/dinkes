@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Layanan;
 use App\Puskesmas;
+use App\Berita;
 
 class AdminController extends Controller
 {
@@ -48,5 +49,24 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Status berhasil diubah.');
     }
 
+    public function berita()
+    {
+        $berita = Berita::where('status', 'active')->paginate(10);
+        return view('user.berita', compact('berita'));
+    }
+
+    public function aproveBerita($id)
+    {
+        $berita = Berita::find($id);
+        if ($berita->status === 'active') {
+            $berita->status = 'nonActive';
+        } else {
+            $berita->status = 'active';
+        }
+
+        $berita->save();
+
+        return redirect()->back()->with('success', 'Status berhasil diubah.');
+    }
 
 }

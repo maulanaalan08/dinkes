@@ -58,6 +58,9 @@ Route::delete('/berita/delete{id}', 'BeritaController@destroy')->name('berita.de
 Route::get('/berita/edit/{id}', 'BeritaController@edit')->name('berita.edit');
 Route::put('/berita/update/{id}', 'BeritaController@update')->name('berita.update');
 
+Route::get('/berita/admin', 'AdminController@berita')->name('berita.admin');
+Route::post('/berita/status/{id}', 'AdminController@aproveBerita')->name('berita.setuju');
+
 
 Auth::routes();
 
