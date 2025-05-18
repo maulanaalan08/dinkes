@@ -38,15 +38,23 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $username = $request->input('username');
         $password = $request->input('password');
-        if (Auth::attempt(['username' => $username, 'password' => $password])) {  
-            // dd($username);
-            return route('user.layanan');
+
+        if (Auth::attempt(['username' => $username, 'password' => $password])) {
+            return redirect()->route('user.layanan');
         }
+
+        return back()->withErrors([
+            'username' => 'Username atau password salah.',
+        ])->withInput();
     }
-    public function showLoginForm(){
+
+
+    public function showLoginForm()
+    {
         return view('../auth/login');
     }
 }

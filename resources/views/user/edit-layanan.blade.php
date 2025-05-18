@@ -87,7 +87,7 @@
                         {{ csrf_field() }}
                         {{ method_field('PUT') }} <!-- CSRF token wajib di Laravel 5.3 -->
 
-                        <input type="hidden" name="id_layanan" value="{{ $layanan->i_layanan }}">
+                        <input type="hidden" name="id_layanan" value="{{ $layanan->id_layanan }}">
 
                         <!-- Judul -->
                         <div class="mb-3">

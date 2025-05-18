@@ -42,6 +42,8 @@ Route::get('/puskesmas/store', 'PuskesmasController@create')->name('puskesmas.st
 Route::post('/puskesmas/create', 'PuskesmasController@store')->name('puskesmas.create');
 
 Route::delete('/puskesmas/delete{id}', 'PuskesmasController@destroy')->name('puskesmas.destroy');
+Route::get('/puskesmas/edit/{id}', 'PuskesmasController@edit')->name('puskesmas.edit');
+Route::put('/puskesmas/update/{id}', 'PuskesmasController@update')->name('puskesmas.update');
 
 
 Auth::routes();
