@@ -102,7 +102,14 @@
                                                 Tidak ada gambar
                                                 @endif
                                             </td>
-                                            
+                                            <td>
+                                                <form action="{{ route('puskesmas.destroy', $b->id_puskesmas) }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+
                                         </tr>
                                         @endforeach
                                     </tbody>

@@ -43,4 +43,14 @@ class PuskesmasController extends Controller
 
         return redirect()->route('puskesmas.index')->with('success', 'Data berhasil disimpan.');
     }
+
+    public function destroy($id)
+    {
+        $puskesmas = Puskesmas::find($id);
+        if ($puskesmas) {
+            $puskesmas->delete();
+            return redirect()->back()->with('success', 'Berhasil dihapus');
+        }
+        return redirect()->back()->with('error', 'Data tidak ditemukan');
+    }
 }
