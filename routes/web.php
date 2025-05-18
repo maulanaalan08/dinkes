@@ -31,6 +31,10 @@ Route::delete('/layanan/delete{id}', 'LayananController@destroy')->name('layanan
 Route::get('/layanan/edit/{id}', 'LayananController@edit')->name('layanan.edit');
 Route::put('/layanan/update/{id}', 'LayananController@update')->name('layanan.update');
 
+Route::get('/layanan/admin', 'AdminController@index')->name('layanan.admin');
+Route::post('/layanan/status/{id}', 'AdminController@aprove')->name('layanan.aprove');
+
+
 
 Auth::routes();
 

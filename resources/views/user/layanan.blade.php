@@ -109,8 +109,12 @@
                                                     <button type="submit" class="btn btn-danger">Delete</button>
                                                 </form>
                                                 <a href="{{ route('layanan.edit', $b->id_layanan) }}" class="btn btn-warning">Edit</a>
-
-
+                                                <form action="{{ route('layanan.aprove', $b->id_layanan) }}" method="POST" style="display:inline;">
+                                                    {{ csrf_field() }}
+                                                    <button type="submit" class="btn btn-sm btn-{{ $b->status === 'active' ? 'success' : 'secondary' }}">
+                                                        {{ $b->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach
