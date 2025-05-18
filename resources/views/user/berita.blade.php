@@ -93,7 +93,7 @@
                                             <th>Detail Berita</th>
                                             <th>Jenis Berita</th>
                                             <th>Gambar Berita</th>
-                                            <th>Tanggal</th>
+                                            <th>Tanggal Upload</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -113,7 +113,11 @@
                                             </td>
                                             <td>{{ $b->tanggal }}</td>
                                             <td>
-                                                
+                                                <form action="{{ route('berita.destroy', $b->id_berita) }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach

@@ -54,6 +54,8 @@ Route::get('/pengumuman', 'BeritaController@index')->name('berita.index');
 Route::get('/berita/store', 'BeritaController@create')->name('berita.store');
 Route::post('/berita/create', 'BeritaController@store')->name('berita.create');
 
+Route::delete('/berita/delete{id}', 'BeritaController@destroy')->name('berita.destroy');
+
 
 Auth::routes();
 

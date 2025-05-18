@@ -106,6 +106,11 @@ class BeritaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $berita = Berita::find($id);
+        if ($berita) {
+            $berita->delete();
+            return redirect()->back()->with('success', 'Berhasil dihapus');
+        }
+        return redirect()->back()->with('error', 'Data tidak ditemukan');
     }
 }
