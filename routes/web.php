@@ -49,6 +49,12 @@ Route::get('/puskesmas/admin', 'AdminController@puskesmas')->name('puskesmas.adm
 Route::post('/puskesmas/status/{id}', 'AdminController@setuju')->name('puskesmas.setuju');
 
 
+//Berita
+Route::get('/pengumuman', 'BeritaController@index')->name('berita.index');
+Route::get('/berita/store', 'BeritaController@create')->name('berita.store');
+Route::post('/berita/create', 'BeritaController@store')->name('berita.create');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
