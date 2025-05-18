@@ -109,6 +109,12 @@
                                                     <button type="submit" class="btn btn-danger">Delete</button>
                                                 </form>
                                                 <a href="{{ route('puskesmas.edit', $b->id_puskesmas) }}" class="btn btn-warning">Edit</a>
+                                                <form action="{{ route('puskesmas.setuju', $b->id_puskesmas) }}" method="POST" style="display:inline;">
+                                                    {{ csrf_field() }}
+                                                    <button type="submit" class="btn btn-sm btn-{{ $b->status === 'active' ? 'success' : 'secondary' }}">
+                                                        {{ $b->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
+                                                    </button>
+                                                </form>
 
                                             </td>
 
