@@ -47,7 +47,7 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Layanan</span></a>
             </li>
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -86,7 +86,7 @@
                                             <th>Judul Layanan</th>
                                             <th>Deskripsi Layanan</th>
                                             <th>Gambar Layanan</th>
-                                            <!-- <th>Action</th> -->
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -102,14 +102,14 @@
                                                 Tidak ada gambar
                                                 @endif
                                             </td>
-                                            <!-- <td>
-                                                <form action="/deleteBuku/{{ $b->id }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="/editBuku/{{ $b->id }}" class="btn btn-warning">Edit</a>
+                                            <td>
+                                                <form action="{{ route('layanan.destroy', $b->id_layanan) }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="_method" value="DELETE">
                                                     <button type="submit" class="btn btn-danger">Delete</button>
                                                 </form>
-                                            </td> -->
+
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

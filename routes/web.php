@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PenggunaController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,10 +23,13 @@ Route::get('/Login', 'Auth\LoginController@showLoginForm')->name('show');
 Route::post('/Login', 'Auth\LoginController@login')->name('login');
 
 //layanan
-Route::post('/layanan', 'LayananController@index')->name('user.layanan');
+Route::get('/layanan', 'LayananController@index')->name('user.layanan');
 Route::get('/layanan/store', 'LayananController@create')->name('layanan.store');
 Route::post('/layanan/create', 'LayananController@store')->name('layanan.create');
+
+Route::delete('/layanan/delete{id}', 'LayananController@destroy')->name('layanan.destroy');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::delete('/delete/{id}', 'LayananController@destroy')->name('layanan.delete');

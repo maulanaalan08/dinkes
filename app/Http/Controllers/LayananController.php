@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Pengguna;
 use App\Layanan;
 
@@ -46,5 +47,22 @@ class LayananController extends Controller
         ]);
 
         return redirect()->route('user.layanan')->with('success', 'Data berhasil disimpan.');
+    }
+
+    public function edit($id)
+    {
+        $layanan = Layanan::findOrFail($id);
+        return view('user.edit-layanan', compact('layanan'));
+    }
+
+    public function destroy($id)
+    {
+        // dd($id_layanan);
+        $layanan = Layanan::find($id);
+        if ($layanan) {
+            $layanan->delete();
+            return redirect()->back()->with('success', 'Berhasil dihapus');
+        }
+        return redirect()->back()->with('error', 'Data tidak ditemukan');
     }
 }
