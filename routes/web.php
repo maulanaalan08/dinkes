@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PenggunaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +18,14 @@ use App\Http\Controllers\PenggunaController;
 
 Route::get('/', 'PenggunaController@index')->name('p.index');
 
-
+Route::get('/Login', 'Auth\LoginController@showLoginForm')->name('show');
+Route::post('/Login', 'Auth\LoginController@login')->name('login');
 
 //layanan
-Route::get('/layanan', 'LayananController@index')->name('user.layanan');
+Route::post('/layanan', 'LayananController@index')->name('user.layanan');
 Route::get('/layanan/store', 'LayananController@create')->name('layanan.store');
 Route::post('/layanan/create', 'LayananController@store')->name('layanan.create');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

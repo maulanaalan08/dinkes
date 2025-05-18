@@ -16,10 +16,7 @@
     <header class="site-header">
       <div class="container header-container">
         <div class="logo-container">
-          <img
-            src="Logo Dinas.png"
-            alt="Logo Dinas Pemerintah"
-            class="logo-image" />
+          <img src="assets/Logo Dinas.png" alt="Logo Dinas Pemerintah" class="logo-image" />
           <div class="logo-text">
             <h1 class="site-title">Dinas Pemerintah</h1>
             <p class="site-tagline">Melayani Dengan Sepenuh Hati</p>
@@ -61,7 +58,14 @@
               </li>
             </ul>
           </nav>
-          <button id="login-button" class="btn btn-primary">Login</button>
+          @if (Route::has('login'))
+            <div class="top-right links">
+              @if (Auth::check())
+              @else
+                <a href="{{ route('show') }}" class="btn btn-primary">Login</a>
+              @endif
+            </div>
+          @endif
           <button
             id="mobile-menu-toggle"
             class="mobile-menu-toggle"
@@ -107,7 +111,8 @@
     <div id="login-modal" class="modal">
       <div class="modal-content">
         <h2 class="modal-title">Login</h2>
-        <form id="login-form">
+        <form method="POST" id="login-form" action="{{ route('login') }}">
+          {{ csrf_field() }}
           <div class="form-group">
             <label for="username" class="form-label">Username</label>
             <input type="text" id="username" class="form-input" required />
@@ -121,9 +126,7 @@
               required />
           </div>
           <div class="form-actions">
-            <button type="button" id="cancel-login" class="btn btn-secondary">
-              Batal
-            </button>
+            <button type="button" id="cancel-login" class="btn btn-secondary">Batal</button>
             <button type="submit" class="btn btn-primary">Login</button>
           </div>
         </form>
@@ -135,13 +138,10 @@
       <!-- Beranda (Home) Tab -->
       <section id="beranda-tab" class="content-tab active">
         <div class="hero-section">
-          @foreach($pengguna as $item)
-          <img src="{{ asset('uploads/' . $item->beranda) }}" alt="Gambar Beranda" width="200">
-          <p>{{ $item->judul }}</p>
-          @endforeach
+          <img src="assets/dinas-kesehatan-kota-surabaya.jpg" alt="Hero Banner Dinas Pemerintah" class="hero-image"/>
           <div class="hero-overlay">
             <div class="hero-content">
-              <h1 class="hero-title">{{$item->judul}}</h1>
+              <h1 class="hero-title">Selamat Datang</h1>
               <p class="hero-subtitle">Portal Resmi Dinas Pemerintah</p>
             </div>
           </div>
@@ -373,7 +373,7 @@
           <div class="footer-about">
             <div class="footer-logo">
               <img
-                src="Logo Dinas.png"
+                src="assets/Logo Dinas.png"
                 alt="Logo Footer"
                 class="footer-logo-image" />
               <div class="footer-logo-text">
