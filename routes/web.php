@@ -62,6 +62,12 @@ Route::get('/berita/admin', 'AdminController@berita')->name('berita.admin');
 Route::post('/berita/status/{id}', 'AdminController@aproveBerita')->name('berita.setuju');
 
 
+//Beranda
+Route::get('/pageawal', 'BerandaController@index')->name('beranda.index');
+Route::get('/beranda/create', 'BerandaController@create')->name('beranda.create');
+Route::post('/beranda/store', 'BerandaController@store')->name('beranda.store');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

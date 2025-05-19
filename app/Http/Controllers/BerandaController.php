@@ -1,0 +1,46 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Beranda;
+use Illuminate\Http\Request;
+
+class BerandaController extends Controller
+{
+    public function index()
+    {
+        $beranda = Beranda::paginate(5);
+        return view('user.beranda', compact('beranda'));
+    }
+
+    public function create()
+    {
+        return view('user.add-beranda');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'judul'   => 'required|string|max:255',
+            'detail'  => 'required|string|max:255',
+            'gambar'  => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $gambarFileName = null;
+        if ($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $gambarFileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('beranda'), $gambarFileName);
+        }
+
+        // Simpan data
+        Beranda::create([
+            'judul'   => $request->judul,
+            'detail'  => $request->detail,
+            'status'  => 'nonActive',
+            'gambar'  => $gambarFileName,
+        ]);
+
+        return redirect()->route('beranda.index')->with('success', 'Data berhasil disimpan.');
+    }
+}
