@@ -67,6 +67,8 @@ Route::get('/pageawal', 'BerandaController@index')->name('beranda.index');
 Route::get('/beranda/create', 'BerandaController@create')->name('beranda.create');
 Route::post('/beranda/store', 'BerandaController@store')->name('beranda.store');
 
+Route::delete('/beranda/delete{id}', 'BerandaController@destroy')->name('beranda.destroy');
+
 
 Auth::routes();
 

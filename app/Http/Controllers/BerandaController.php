@@ -43,4 +43,14 @@ class BerandaController extends Controller
 
         return redirect()->route('beranda.index')->with('success', 'Data berhasil disimpan.');
     }
+
+    public function destroy($id)
+    {
+        $beranda = Beranda::find($id);
+        if ($beranda) {
+            $beranda->delete();
+            return redirect()->back()->with('success', 'Berhasil dihapus');
+        }
+        return redirect()->back()->with('error', 'Data tidak ditemukan');
+    }
 }
