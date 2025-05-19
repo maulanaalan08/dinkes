@@ -71,6 +71,9 @@ Route::delete('/beranda/delete{id}', 'BerandaController@destroy')->name('beranda
 Route::get('/beranda/edit/{id}', 'BerandaController@edit')->name('beranda.edit');
 Route::put('/beranda/update/{id}', 'BerandaController@update')->name('beranda.update');
 
+Route::get('/beranda/admin', 'AdminController@beranda')->name('beranda.admin');
+Route::post('/beranda/status/{id}', 'AdminController@aproveBeranda')->name('beranda.aprove');
+
 
 Auth::routes();
 

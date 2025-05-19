@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Layanan;
 use App\Puskesmas;
 use App\Berita;
+use App\Beranda;
 
 class AdminController extends Controller
 {
@@ -65,6 +66,26 @@ class AdminController extends Controller
         }
 
         $berita->save();
+
+        return redirect()->back()->with('success', 'Status berhasil diubah.');
+    }
+
+    public function beranda()
+    {
+        $beranda = Beranda::where('status', 'active')->paginate(10);
+        return view('user.beranda', compact('beranda'));
+    }
+
+    public function aproveBeranda($id)
+    {
+        $beranda = Beranda::find($id);
+        if ($beranda->status === 'active') {
+            $beranda->status = 'nonActive';
+        } else {
+            $beranda->status = 'active';
+        }
+
+        $beranda->save();
 
         return redirect()->back()->with('success', 'Status berhasil diubah.');
     }
