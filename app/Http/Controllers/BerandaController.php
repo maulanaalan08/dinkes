@@ -44,6 +44,43 @@ class BerandaController extends Controller
         return redirect()->route('beranda.index')->with('success', 'Data berhasil disimpan.');
     }
 
+    public function edit($id)
+    {
+        $beranda = Beranda::findOrFail($id);
+        return view('user.edit-beranda', compact('beranda'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'judul' => 'required|string|max:255',
+            'detail' => 'required|string',
+            'gambar'    => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $beranda = Beranda::find($id);
+
+        // Proses upload gambar jika ada file baru
+        if ($request->hasFile('gambar')) {
+            // hapus gambar lama jika ada
+            if ($beranda->gambar && file_exists(public_path('beranda/' . $beranda->gambar))) {
+                unlink(public_path('beranda/' . $beranda->gambar));
+            }
+
+            $file = $request->file('gambar');
+            $gambarFileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('beranda'), $gambarFileName);
+            $beranda->gambar = $gambarFileName;
+        }
+
+
+        $beranda->judul = $request->judul;
+        $beranda->detail = $request->detail;
+        $beranda->save();
+
+        return redirect()->route('beranda.index')->with('success', 'Data berhasil diperbarui');
+    }
+
     public function destroy($id)
     {
         $beranda = Beranda::find($id);
