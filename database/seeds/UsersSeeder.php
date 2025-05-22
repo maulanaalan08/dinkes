@@ -20,14 +20,14 @@ class UsersSeeder extends Seeder
             'password' => Hash::make('admin123'), // password akan di-hash
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'role' => '1'
+            'role' => 'admin'
         ]);
         DB::table('users')->insert([
             'username' => 'user1', // pastikan kolom ini ada
             'password' => Hash::make('user123'), // password akan di-hash
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'role' => '0'
+            'role' => 'user'
         ]);
     }
 }

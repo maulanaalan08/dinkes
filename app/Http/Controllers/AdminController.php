@@ -14,7 +14,7 @@ class AdminController extends Controller
     public function index()
     {
         $role = Auth::user()->role;
-        $layanan = Layanan::where('status', 'active')->paginate(10);
+        $layanan = Layanan::paginate(5);
         return view('user.layanan', compact('layanan', 'role'));
     }
 
@@ -34,8 +34,9 @@ class AdminController extends Controller
 
     public function puskesmas()
     {
-        $puskesmas = Puskesmas::where('status', 'active')->paginate(10);
-        return view('user.puskesmas', compact('puskesmas'));
+        $role = Auth::user()->role;
+        $puskesmas = Puskesmas::paginate(5);
+        return view('user.puskesmas', compact('puskesmas', 'role'));
     }
 
     public function setuju($id)
@@ -54,8 +55,9 @@ class AdminController extends Controller
 
     public function berita()
     {
-        $berita = Berita::where('status', 'active')->paginate(10);
-        return view('user.berita', compact('berita'));
+        $role = Auth::user()->role;
+        $berita = Berita::paginate(5);
+        return view('user.berita', compact('berita', 'role'));
     }
 
     public function aproveBerita($id)
@@ -74,8 +76,9 @@ class AdminController extends Controller
 
     public function beranda()
     {
-        $beranda = Beranda::where('status', 'active')->paginate(10);
-        return view('user.beranda', compact('beranda'));
+        $role = Auth::user()->role;
+        $beranda = Beranda::paginate(5);
+        return view('user.beranda', compact('beranda', 'role'));
     }
 
     public function aproveBeranda($id)

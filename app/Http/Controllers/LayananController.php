@@ -20,11 +20,14 @@ class LayananController extends Controller
 
     public function create()
     {
-        return view('user.add-layanan');
+        $role = Auth::user()->role;
+        $layanan = Layanan::all();
+        return view('user.add-layanan', compact('layanan', 'role'));
     }
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $this->validate($request, [
             'judul'   => 'required|string|max:255',
             'detail'  => 'required|string|max:255',
@@ -51,8 +54,9 @@ class LayananController extends Controller
 
     public function edit($id)
     {
+        $role = Auth::user()->role;
         $layanan = Layanan::findOrFail($id);
-        return view('user.edit-layanan', compact('layanan'));
+        return view('user.edit-layanan', compact('layanan', 'role'));
     }
 
     public function update(Request $request, $id)

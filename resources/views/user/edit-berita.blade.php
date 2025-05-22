@@ -33,39 +33,77 @@
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center mt-3" href="/layanan">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fas fa-laugh-wink"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">Dinas Kesehatan Surabaya </div>
+                </a>
+                <hr class="sidebar-divider my-0">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/indexBuku">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-            </a>
+                @if ($role == 'admin')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('layanan.admin') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Approve Layanan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('puskesmas.admin') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Approve Puskesmas</span>
+                        </a>
+                    </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('berita.admin') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Approve Berita</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('beranda.admin') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Approve Beranda</span>
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('user.layanan') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Layanan</span>
+                        </a>
+                    </li>
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="/indexBuku">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Buku</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/indexLagu">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Lagu</span></a>
-            </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('puskesmas.index') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Puskesmas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('berita.index') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Berita</span>
+                        </a>
+                    </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('beranda.index') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Beranda</span>
+                        </a>
+                    </li>
+                @endif
+                <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span class="btn btn-danger">logout</span>
+                    </a>
+                </li>
+            </ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->

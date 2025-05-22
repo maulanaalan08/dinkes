@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Puskesmas extends Model
 {
-    protected $table = "puskesmas";
-    protected $primaryKey = "id_puskesmas";
+    protected $table = "data_puskesmas";
+    protected $primaryKey = "id_data_puskesmas";
     protected $fillable = [
-        'tempat',
-        'detail',
+        'nama',
+        'kepala_puskesmas',
+        'alamat',
+        'no_telp',
         'status',
-        'gambar',
     ];
-
 }
+

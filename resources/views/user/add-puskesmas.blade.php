@@ -32,41 +32,77 @@
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center mt-3" href="/layanan">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fas fa-laugh-wink"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">Dinas Kesehatan Surabaya </div>
+                </a>
+                <hr class="sidebar-divider my-0">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Dinas Kesehatan Surabaya </div>
-            </a>
+                @if ($role == 'admin')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('layanan.admin') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Approve Layanan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('puskesmas.admin') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Approve Puskesmas</span>
+                        </a>
+                    </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('berita.admin') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Approve Berita</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('beranda.admin') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Approve Beranda</span>
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('user.layanan') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Layanan</span>
+                        </a>
+                    </li>
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="/layanan">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Layanan</span></a>
-            </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('puskesmas.index') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Puskesmas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('berita.index') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Berita</span>
+                        </a>
+                    </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/puskesmas">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Puskesmas</span></a>
-            </li>
-            
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('beranda.index') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Beranda</span>
+                        </a>
+                    </li>
+                @endif
+                <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span class="btn btn-danger">logout</span>
+                    </a>
+                </li>
+            </ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -86,23 +122,26 @@
                     <form method="post" action="{{ route('puskesmas.create') }}" enctype="multipart/form-data">
                         {{ csrf_field() }} <!-- CSRF token wajib di Laravel 5.3 -->
 
-                        <!-- Judul Buku -->
                         <div class="mb-3">
-                            <label for="tempat" class="form-label">Tempat Puskesmas</label>
-                            <input type="text" class="form-control" id="tempat" name="tempat" placeholder="Contoh: Harry Potter">
+                            <label for="nama" class="form-label">Nama Puskesmas</label>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Contoh: Surabaya">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="kepala_puskesmas" class="form-label">Kepala Puskesmas</label>
+                            <input type="text" class="form-control" id="kepala_puskesmas" name="kepala_puskesmas" placeholder="Contoh: Buku Bagus">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="alamat" class="form-label">Alamat Puskesmas</label>
+                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Contoh: Surabaya">
                         </div>
 
-                        <!-- Deskripsi -->
                         <div class="mb-3">
-                            <label for="detail" class="form-label">Detail Puskesmas</label>
-                            <input type="text" class="form-control" id="detail" name="detail" placeholder="Contoh: Buku Bagus">
+                            <label for="no_telp" class="form-label">No Telepon Puskesmas</label>
+                            <input type="number" class="form-control" id="no_telp" name="no_telp" placeholder="Contoh: Surabaya">
                         </div>
-
-                        <!-- Gambar -->
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label">Gambar Puskesmas</label>
-                            <input type="file" class="form-control" id="formFile" name="gambar" placeholder="Contoh: Baik, Buruk">
-                        </div>
+                       
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

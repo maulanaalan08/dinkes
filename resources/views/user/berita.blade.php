@@ -29,40 +29,77 @@
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center mt-3" href="/layanan">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fas fa-laugh-wink"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">Dinas Kesehatan Surabaya </div>
+                </a>
+                <hr class="sidebar-divider my-0">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/layanan">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Dinas Kesehatan Surabaya </div>
-            </a>
+                @if ($role == 'admin')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('layanan.admin') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Approve Layanan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('puskesmas.admin') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Approve Puskesmas</span>
+                        </a>
+                    </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('berita.admin') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Approve Berita</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('beranda.admin') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Approve Beranda</span>
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('user.layanan') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Layanan</span>
+                        </a>
+                    </li>
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="/layanan">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Layanan</span></a>
-            </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('puskesmas.index') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Puskesmas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('berita.index') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Berita</span>
+                        </a>
+                    </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/puskesmas">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Puskesmas</span></a>
-            </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('beranda.index') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Beranda</span>
+                        </a>
+                    </li>
+                @endif
+                <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span class="btn btn-danger">logout</span>
+                    </a>
+                </li>
+            </ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -113,18 +150,21 @@
                                             </td>
                                             <td>{{ $b->tanggal }}</td>
                                             <td>
-                                                <form action="{{ route('berita.destroy', $b->id_berita) }}" method="POST">
-                                                    {{ csrf_field() }}
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
-                                                <a href="{{ route('berita.edit', $b->id_berita) }}" class="btn btn-warning">Edit</a>
-                                                <form action="{{ route('berita.setuju', $b->id_berita) }}" method="POST" style="display:inline;">
-                                                    {{ csrf_field() }}
-                                                    <button type="submit" class="btn btn-sm btn-{{ $b->status === 'active' ? 'success' : 'secondary' }}">
-                                                        {{ $b->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
-                                                    </button>
-                                                </form>
+                                                @if ($role == 'admin')    
+                                                        <form action="{{ route('berita.setuju', $b->id_berita) }}" method="POST" >
+                                                            {{ csrf_field() }}
+                                                            <button type="submit" class="btn btn-sm btn-{{ $b->status === 'active' ? 'success' : 'secondary' }}">
+                                                                {{ $b->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
+                                                            </button>
+                                                        </form>
+                                                    @else
+                                                        <form action="{{ route('berita.destroy', $b->id_berita) }}" method="POST">
+                                                            {{ csrf_field() }}
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                        <a href="{{ route('berita.edit', $b->id_berita) }}" class="btn btn-warning">Edit</a>
+                                                    @endif
                                             </td>
                                         </tr>
                                         @endforeach

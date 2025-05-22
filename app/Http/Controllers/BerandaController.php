@@ -4,18 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Beranda;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BerandaController extends Controller
 {
     public function index()
     {
+        $role = Auth::user()->role;
         $beranda = Beranda::paginate(5);
-        return view('user.beranda', compact('beranda'));
+        return view('user.beranda', compact('beranda', 'role'));
     }
 
     public function create()
     {
-        return view('user.add-beranda');
+        $role = Auth::user()->role;
+        $beranda = Beranda::all();
+        return view('user.add-beranda', compact('beranda', 'role'));
     }
 
     public function store(Request $request)
@@ -46,8 +50,9 @@ class BerandaController extends Controller
 
     public function edit($id)
     {
+        $role = Auth::user()->role;
         $beranda = Beranda::findOrFail($id);
-        return view('user.edit-beranda', compact('beranda'));
+        return view('user.edit-beranda', compact('beranda', 'role'));
     }
 
     public function update(Request $request, $id)

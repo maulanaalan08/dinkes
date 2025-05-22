@@ -37,16 +37,17 @@
                             <span>Approve Puskesmas</span>
                         </a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('berita.admin') }}">
                             <i class="fas fa-fw fa-tachometer-alt"></i>
-                            <span>Berita</span>
+                            <span>Approve Berita</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('beranda.admin') }}">
                             <i class="fas fa-fw fa-tachometer-alt"></i>
-                            <span>Beranda</span>
+                            <span>Approve Beranda</span>
                         </a>
                     </li>
                 @else

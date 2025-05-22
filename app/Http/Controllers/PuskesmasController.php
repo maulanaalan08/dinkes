@@ -4,40 +4,40 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Puskesmas;
+use Illuminate\Support\Facades\Auth;
 
 class PuskesmasController extends Controller
 {
     public function index()
     {
+        $role = auth()->user();
         $puskesmas = Puskesmas::paginate(5);
-        return view('user.puskesmas', compact('puskesmas'));
+        return view('user.puskesmas', compact('puskesmas', 'role'));
     }
 
     public function create()
     {
-        return view('user.add-puskesmas');
+        $role = auth()->user();
+        $puskesmas = Puskesmas::all();
+        return view('user.add-puskesmas', compact('puskesmas', 'role'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'tempat'   => 'required|string|max:255',
-            'detail'  => 'required|string|max:255',
-            'gambar'  => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'nama'   => 'required|string|max:255',
+            'kepala_puskesmas'  => 'required|string|max:255',
+            'alamat'   => 'required|string|max:255',
+            'no_telp'   => 'required|string|max:255',
         ]);
 
-        $gambarFileName = null;
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
-            $gambarFileName = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('puskesmas'), $gambarFileName);
-        }
 
         // Simpan data
         Puskesmas::create([
-            'tempat'   => $request->tempat,
-            'detail'  => $request->detail,
-            'gambar'  => $gambarFileName,
+            'nama'   => $request->nama,
+            'kepala_puskesmas'  => $request->kepala_puskesmas,
+            'alamat'   => $request->alamat,
+            'no_telp'   => $request->no_telp,
             'status'  => 'nonActive',
         ]);
 
@@ -56,36 +56,26 @@ class PuskesmasController extends Controller
 
     public function edit($id)
     {
+        $role = auth()->user();
         $puskesmas = Puskesmas::findOrFail($id);
-        return view('user.edit-puskesmas', compact('puskesmas'));
+        return view('user.edit-puskesmas', compact('puskesmas', 'role'));
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'tempat' => 'required|string|max:255',
-            'detail' => 'required|string',
-            'gambar'    => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'nama'   => 'required|string|max:255',
+            'kepala_puskesmas'  => 'required|string|max:255',
+            'alamat'   => 'required|string|max:255',
+            'no_telp'   => 'required|string|max:255',
         ]);
 
         $puskesmas = Puskesmas::find($id);
 
-        // Proses upload gambar jika ada file baru
-        if ($request->hasFile('gambar')) {
-            // hapus gambar lama jika ada
-            if ($puskesmas->gambar && file_exists(public_path('puskesmas/' . $puskesmas->gambar))) {
-                unlink(public_path('puskesmas/' . $puskesmas->gambar));
-            }
-
-            $file = $request->file('gambar');
-            $gambarFileName = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('puskesmas'), $gambarFileName);
-            $puskesmas->gambar = $gambarFileName;
-        }
-
-
-        $puskesmas->tempat = $request->tempat;
-        $puskesmas->detail = $request->detail;
+        $puskesmas->nama = $request->nama;
+        $puskesmas->kepala_puskesmas = $request->kepala_puskesmas;
+        $puskesmas->alamat = $request->alamat;
+        $puskesmas->no_telp = $request->no_telp;
         $puskesmas->save();
 
         return redirect()->route('puskesmas.index')->with('success', 'Data berhasil diperbarui');

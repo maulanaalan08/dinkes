@@ -28,55 +28,55 @@ Route::get('/Login', 'Auth\LoginController@showLoginForm')->name('show');
 Route::post('/Login', 'Auth\LoginController@login')->name('login');
 
 //layanan
-Route::get('/layanan', 'LayananController@index')->name('user.layanan');
-Route::get('/layanan/store', 'LayananController@create')->name('layanan.store');
-Route::post('/layanan/create', 'LayananController@store')->name('layanan.create');
+Route::get('/layanan', 'LayananController@index')->middleware(['auth', 'role:admin|user'])->name('user.layanan');
+Route::get('/layanan/store', 'LayananController@create')->middleware(['auth', 'role:admin|user'])->name('layanan.store');
+Route::post('/layanan/create', 'LayananController@store')->middleware(['auth', 'role:admin|user'])->name('layanan.create');
 
-Route::delete('/layanan/delete{id}', 'LayananController@destroy')->name('layanan.destroy');
-Route::get('/layanan/edit/{id}', 'LayananController@edit')->name('layanan.edit');
-Route::put('/layanan/update/{id}', 'LayananController@update')->name('layanan.update');
+Route::delete('/layanan/delete{id}', 'LayananController@destroy')->middleware(['auth', 'role:admin|user'])->name('layanan.destroy');
+Route::get('/layanan/edit/{id}', 'LayananController@edit')->middleware(['auth', 'role:admin|user'])->name('layanan.edit');
+Route::put('/layanan/update/{id}', 'LayananController@update')->middleware(['auth', 'role:admin|user'])->name('layanan.update');
 
-Route::get('/layanan/admin', 'AdminController@index')->name('layanan.admin');
-Route::post('/layanan/status/{id}', 'AdminController@aprove')->name('layanan.aprove');
+Route::get('/layanan/admin', 'AdminController@index')->middleware(['auth', 'role:admin'])->name('layanan.admin');
+Route::post('/layanan/status/{id}', 'AdminController@aprove')->middleware(['auth', 'role:admin'])->name('layanan.aprove');
 
 
 //Puskesmas
-Route::get('/kesmas', 'PuskesmasController@index')->name('puskesmas.index');
-Route::get('/puskesmas/store', 'PuskesmasController@create')->name('puskesmas.store');
-Route::post('/puskesmas/create', 'PuskesmasController@store')->name('puskesmas.create');
+Route::get('/kesmas', 'PuskesmasController@index')->middleware(['auth', 'role:admin|user'])->name('puskesmas.index');
+Route::get('/puskesmas/store', 'PuskesmasController@create')->middleware(['auth', 'role:admin|user'])->name('puskesmas.store');
+Route::post('/puskesmas/create', 'PuskesmasController@store')->middleware(['auth', 'role:admin|user'])->name('puskesmas.create');
 
-Route::delete('/puskesmas/delete{id}', 'PuskesmasController@destroy')->name('puskesmas.destroy');
-Route::get('/puskesmas/edit/{id}', 'PuskesmasController@edit')->name('puskesmas.edit');
-Route::put('/puskesmas/update/{id}', 'PuskesmasController@update')->name('puskesmas.update');
+Route::delete('/puskesmas/delete{id}', 'PuskesmasController@destroy')->middleware(['auth', 'role:admin|user'])->name('puskesmas.destroy');
+Route::get('/puskesmas/edit/{id}', 'PuskesmasController@edit')->middleware(['auth', 'role:admin|user'])->name('puskesmas.edit');
+Route::put('/puskesmas/update/{id}', 'PuskesmasController@update')->middleware(['auth', 'role:admin|user'])->name('puskesmas.update');
 
-Route::get('/puskesmas/admin', 'AdminController@puskesmas')->name('puskesmas.admin');
-Route::post('/puskesmas/status/{id}', 'AdminController@setuju')->name('puskesmas.setuju');
+Route::get('/puskesmas/admin', 'AdminController@puskesmas')->middleware(['auth', 'role:admin'])->name('puskesmas.admin');
+Route::post('/puskesmas/status/{id}', 'AdminController@setuju')->middleware(['auth', 'role:admin'])->name('puskesmas.setuju');
 
 
 //Berita
-Route::get('/berita/pengumuman', 'BeritaController@index')->name('berita.index');
-Route::get('/berita/store', 'BeritaController@create')->name('berita.store');
-Route::post('/berita/create', 'BeritaController@store')->name('berita.create');
+Route::get('/pengumuman', 'BeritaController@index')->middleware(['auth', 'role:admin|user'])->name('berita.index');
+Route::get('/berita/store', 'BeritaController@create')->middleware(['auth', 'role:admin|user'])->name('berita.store');
+Route::post('/berita/create', 'BeritaController@store')->middleware(['auth', 'role:admin|user'])->name('berita.create');
 
-Route::delete('/berita/delete{id}', 'BeritaController@destroy')->name('berita.destroy');
-Route::get('/berita/edit/{id}', 'BeritaController@edit')->name('berita.edit');
-Route::put('/berita/update/{id}', 'BeritaController@update')->name('berita.update');
+Route::delete('/berita/delete{id}', 'BeritaController@destroy')->middleware(['auth', 'role:admin|user'])->name('berita.destroy');
+Route::get('/berita/edit/{id}', 'BeritaController@edit')->middleware(['auth', 'role:admin|user'])->name('berita.edit');
+Route::put('/berita/update/{id}', 'BeritaController@update')->middleware(['auth', 'role:admin|user'])->name('berita.update');
 
-Route::get('/berita/admin', 'AdminController@berita')->name('berita.admin');
-Route::post('/berita/status/{id}', 'AdminController@aproveBerita')->name('berita.setuju');
+Route::get('/berita/admin', 'AdminController@berita')->middleware(['auth', 'role:admin'])->name('berita.admin');
+Route::post('/berita/status/{id}', 'AdminController@aproveBerita')->middleware(['auth', 'role:admin'])->name('berita.setuju');
 
 
 //Beranda
-Route::get('/pageawal', 'BerandaController@index')->name('beranda.index');
-Route::get('/beranda/create', 'BerandaController@create')->name('beranda.create');
-Route::post('/beranda/store', 'BerandaController@store')->name('beranda.store');
+Route::get('/pageawal', 'BerandaController@index')->middleware(['auth', 'role:admin|user'])->name('beranda.index');
+Route::get('/beranda/create', 'BerandaController@create')->middleware(['auth', 'role:admin|user'])->name('beranda.create');
+Route::post('/beranda/store', 'BerandaController@store')->middleware(['auth', 'role:admin|user'])->name('beranda.store');
 
-Route::delete('/beranda/delete{id}', 'BerandaController@destroy')->name('beranda.destroy');
-Route::get('/beranda/edit/{id}', 'BerandaController@edit')->name('beranda.edit');
-Route::put('/beranda/update/{id}', 'BerandaController@update')->name('beranda.update');
+Route::delete('/beranda/delete{id}', 'BerandaController@destroy')->middleware(['auth', 'role:admin|user'])->name('beranda.destroy');
+Route::get('/beranda/edit/{id}', 'BerandaController@edit')->middleware(['auth', 'role:admin|user'])->name('beranda.edit');
+Route::put('/beranda/update/{id}', 'BerandaController@update')->middleware(['auth', 'role:admin|user'])->name('beranda.update');
 
-Route::get('/beranda/admin', 'AdminController@beranda')->name('beranda.admin');
-Route::post('/beranda/status/{id}', 'AdminController@aproveBeranda')->name('beranda.aprove');
+Route::get('/beranda/admin', 'AdminController@beranda')->middleware(['auth', 'role:admin'])->name('beranda.admin');
+Route::post('/beranda/status/{id}', 'AdminController@aproveBeranda')->middleware(['auth', 'role:admin'])->name('beranda.aprove');
 
 
 Auth::routes();

@@ -4,18 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Berita;
+use Illuminate\Support\Facades\Auth;
 
 class BeritaController extends Controller
 {
     public function index()
     {
+        $role = auth()->user();
         $berita = Berita::paginate(5);
-        return view('user.berita', compact('berita'));
+        return view('user.berita', compact('berita', 'role'));
     }
 
     public function create()
     {
-        return view('user.add-berita');
+        $role = auth()->user();
+        $berita = Berita::all();
+        return view('user.add-berita', compact('berita', 'role'));
     }
 
     public function store(Request $request)
@@ -50,8 +54,9 @@ class BeritaController extends Controller
 
     public function edit($id)
     {
+        $role = auth()->user();
         $berita = Berita::findOrFail($id);
-        return view('user.edit-berita', compact('berita'));
+        return view('user.edit-berita', compact('berita', 'role'));
     }
 
 
