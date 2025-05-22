@@ -79,3 +79,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::delete('/delete/{id}', 'LayananController@destroy')->name('layanan.delete');
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');

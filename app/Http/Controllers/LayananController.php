@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengguna;
 use App\Layanan;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class LayananController extends Controller
 {
     public function index()
     {
+        $role = Auth::user()->role;
+        // dd($usrLogin->role);
         $layanan = Layanan::paginate(5);
-        return view('user.layanan', compact('layanan'));
+        return view('user.layanan', compact('layanan', 'role'));
     }
 
 

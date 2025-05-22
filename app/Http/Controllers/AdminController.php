@@ -7,13 +7,15 @@ use App\Layanan;
 use App\Puskesmas;
 use App\Berita;
 use App\Beranda;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     public function index()
     {
+        $role = Auth::user()->role;
         $layanan = Layanan::where('status', 'active')->paginate(10);
-        return view('user.layanan', compact('layanan'));
+        return view('user.layanan', compact('layanan', 'role'));
     }
 
     public function aprove($id)

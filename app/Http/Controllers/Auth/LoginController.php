@@ -44,7 +44,13 @@ class LoginController extends Controller
         $password = $request->input('password');
 
         if (Auth::attempt(['username' => $username, 'password' => $password])) {
-            return redirect()->route('user.layanan');
+            $role = Auth::user();
+            if ($role->role == 'admin'){
+                return redirect()->route('layanan.admin');
+            }
+            elseif ($role->role == 'user'){
+                return redirect()->route('user.layanan');
+            }
         }
 
         return back()->withErrors([
@@ -56,5 +62,11 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('../auth/login');
+    }
+
+    public function logout(){
+        Auth::logout();
+
+        return redirect()->route('p.index');
     }
 }
