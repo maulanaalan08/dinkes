@@ -18,7 +18,11 @@ use App\http\Controllers\PuskesmasController;
 |
 */
 
-Route::get('/', 'PenggunaController@index')->name('p.index');
+Route::get('/', 'PenggunaController@index')->name('index');
+Route::get('/profile', 'PenggunaController@profile')->name('profile');
+Route::get('/upt', 'PenggunaController@upt')->name('upt');
+Route::get('/pengumuman', 'PenggunaController@berita')->name('berita');
+Route::get('/kontak', 'PenggunaController@kontak')->name('kontak');
 
 Route::get('/Login', 'Auth\LoginController@showLoginForm')->name('show');
 Route::post('/Login', 'Auth\LoginController@login')->name('login');
@@ -50,7 +54,7 @@ Route::post('/puskesmas/status/{id}', 'AdminController@setuju')->name('puskesmas
 
 
 //Berita
-Route::get('/pengumuman', 'BeritaController@index')->name('berita.index');
+Route::get('/berita/pengumuman', 'BeritaController@index')->name('berita.index');
 Route::get('/berita/store', 'BeritaController@create')->name('berita.store');
 Route::post('/berita/create', 'BeritaController@store')->name('berita.create');
 

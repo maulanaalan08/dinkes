@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UPT Dinas - Dinas Pemerintah</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>Portal Dinas Pemerintah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-    <body>
+  <body>
     <div id="app" class="site-container">
       <header class="site-header">
         <div class="container header-container">
@@ -25,10 +25,10 @@
                   <a href="{{ route('index') }}" class="nav-link ">Beranda</a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('profile') }}" class="nav-link ">Profil</a>
+                  <a href="{{ route('profile') }}" class="nav-link active">Profil</a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('upt') }}" class="nav-link active ">UPT Dinas</a>
+                  <a href="{{ route('upt') }}" class="nav-link">UPT Dinas</a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('berita') }}" class="nav-link">Berita</a>
@@ -52,7 +52,7 @@
               <a href="index.html" class="mobile-nav-link"> Beranda </a>
             </li>
             <li class="mobile-nav-item">
-              <a href="profil.html" class="mobile-nav-link">Profil</a>
+              <a href="profil.html" class="mobile-nav-link active">Profil</a>
             </li>
             <li class="mobile-nav-item">
               <a href="upt.html" class="mobile-nav-link">UPT Dinas</a>
@@ -78,87 +78,45 @@
             </div>
             <div class="form-group">
               <label for="password" class="form-label">Password</label>
-              <input
-                type="password"
-                id="password"
-                class="form-input"
-                required
-              />
+              <input type="password" id="password" class="form-input" required />
             </div>
             <div class="form-actions">
-              <button type="button" id="cancel-login" class="btn btn-secondary">
-                Batal
-              </button>
+              <button type="button" id="cancel-login" class="btn btn-secondary">Batal</button>
               <button type="submit" class="btn btn-primary">Login</button>
             </div>
           </form>
         </div>
       </div>
 
-      <!-- Main Content -->
       <main class="main-content">
-        <!-- Breadcrumb -->
-        <div class="container">
-          <nav class="breadcrumb">
-            <ul class="breadcrumb-list">
-              <li class="breadcrumb-item">
-                <a href="index.html" class="breadcrumb-link">Beranda</a>
-              </li>
-              <li class="breadcrumb-item">
-                <span class="breadcrumb-current">UPT Dinas</span>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div class="container section-container">
-          <h2 class="section-title">Unit Pelaksana Teknis</h2>
-          <div class="upt-grid">
-            @foreach ($puskesmas as $p)
-              <article class="upt-card">
-                <img src="{{ asset('puskesmas/' . $l->gambar)}}" alt="{{ $l->gambar }}" class="upt-image"/>
-                <h3 class="upt-title">{{ $p->tempat }}</h3>
-                <p class="upt-description">{{ $p->detail }}</p>
-              </article>
-            @endforeach
+        <section id="profil-tab" class="content-tab active">
+          <div class="container section-container">
+            <div class="profile-container">
+              <h2 class="section-title">Profil Dinas</h2>
+              <div class="profile-content">
+                <h3 class="profile-subtitle">Visi & Misi</h3>
+                <p class="profile-text">Mewujudkan pelayanan publik yang profesional, efektif, dan transparan untuk kesejahteraan masyarakat.</p>
+                <h3 class="profile-subtitle">Struktur Organisasi</h3>
+                <img src="{{ asset('assets/bagan.jpg') }}" alt="Struktur Organisasi Dinas Pemerintah" style="width:800; height:600" class="profile-image" />
+                <h3 class="profile-subtitle">Tugas & Fungsi</h3>
+                <ul class="profile-list">
+                  <li class="profile-list-item">Perumusan kebijakan teknis sesuai dengan lingkup tugasnya</li>
+                  <li class="profile-list-item">Penyelenggaraan urusan pemerintahan dan pelayanan umum</li>
+                  <li class="profile-list-item">Pembinaan dan pelaksanaan tugas sesuai dengan lingkup tugasnya</li>
+                  <li class="profile-list-item">Pelaksanaan tugas lain yang diberikan oleh Bupati sesuai dengan tugas dan fungsinya</li>
+                </ul>
+              </div>
+            </div>
           </div>
-
-          <nav class="pagination">
-            <ul class="pagination-list">
-              <li class="pagination-item">
-                <a href="#" class="pagination-prev pagination-disabled"aria-label="Previous page">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                  </svg>
-                </a>
-              </li>
-              <li class="pagination-item">
-                <a href="#" class="pagination-link active">1</a>
-              </li>
-              <li class="pagination-item">
-                <a href="#" class="pagination-link">2</a>
-              </li>
-              <li class="pagination-item">
-                <a href="#" class="pagination-link">3</a>
-              </li>
-              <li class="pagination-item">
-                <a href="#" class="pagination-next" aria-label="Next page">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                  </svg>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        </section>
       </main>
 
-      <!-- Footer -->
       <footer class="site-footer">
         <div class="container footer-container">
           <div class="footer-grid">
             <div class="footer-about">
               <div class="footer-logo">
-                <img src="{{ asset('assets/Logo Dinas.png') }}" alt="Logo Footer" class="footer-logo-image"/>
+                <img src="assets/Logo Dinas.png" alt="Logo Footer" class="footer-logo-image" />
                 <div class="footer-logo-text">
                   <h3 class="footer-title">Dinas Pemerintah</h3>
                   <p class="footer-tagline">Melayani Dengan Sepenuh Hati</p>
@@ -202,6 +160,6 @@
         </div>
       </footer>
     </div>
-    <script src="js/script.js"></script>
   </body>
+  <script src="js/script.js"></script>
 </html>
