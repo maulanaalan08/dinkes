@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -41,12 +42,12 @@
             </ul>
           </nav>
           @if (Route::has('login'))
-            <div class="top-right links">
-              @if (Auth::check())
-              @else
-                <a href="{{ route('show') }}" class="btn btn-primary">Login</a>
-              @endif
-            </div>
+          <div class="top-right links">
+            @if (Auth::check())
+            @else
+            <a href="{{ route('show') }}" class="btn btn-primary">Login</a>
+            @endif
+          </div>
           @endif
           <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle menu mobile" aria-expanded="false">
             <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -103,15 +104,15 @@
         <div class="d-flex justify-content-center bg-secondary bg-gradient bg-opacity-75">
           <div id="carouselExampleCaptions" class="container px-5 carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner row w-50 mx-auto">
-                @foreach ($beranda as $b)
-                <div class=" carousel-item @if($loop->first) active @endif">
-                    <img src="{{ asset('beranda/' . $b->gambar) }}" class="d-block w-100" alt="{{ $b->gambar }}">
-                    <div class="text-dark carousel-caption d-none d-md-block">
-                        <h3>{{ $b->judul }}</h5>
-                        <p>{{ $b->detail }}</p>
-                    </div>
+              @foreach ($beranda as $b)
+              <div class=" carousel-item @if($loop->first) active @endif">
+                <img src="{{ asset('beranda/' . $b->gambar) }}" class="d-block w-100" alt="{{ $b->gambar }}">
+                <div class="text-dark carousel-caption d-none d-md-block">
+                  <h3>{{ $b->judul }}</h5>
+                    <p>{{ $b->detail }}</p>
                 </div>
-                @endforeach
+              </div>
+              @endforeach
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -125,16 +126,18 @@
         </div>
 
         <div class="container section-container">
-          <h2 class="section-title">Layanan Kami</h2>
-          @foreach ($layanan as $l) 
-            <div class="services-grid">
-              <article class="service-card text-center" >
-                <img src="{{ asset('uploads/' . $l->gambar)}}" alt="{{ $l->gambar }}" class="service-image" style="width:400px; height:300px"/>
+          <h2 class="section-title text-center mb-4">Layanan Kami</h2>
+          <div class="row">
+            @foreach ($layanan as $l)
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 text-center">
+                <img src="{{ asset('uploads/' . $l->gambar)}}" alt="{{ $l->gambar }}" class="service-image" style="width:400px; height:300px" />
                 <h3 class="service-title">{{ $l->judul }}</h3>
                 <p class="service-description">{{ $l->detail }}</p>
-              </article>
+              </div>
             </div>
-          @endforeach
+            @endforeach
+          </div>
         </div>
       </section>
     </main>
@@ -156,22 +159,22 @@
           <div class="footer-links">
             <h3 class="footer-title">Tautan Cepat</h3>
             <ul class="footer-nav">
-                <li class="footer-nav-item">
-                  <a href="{{ route('index') }}" class="footer-nav-link ">Beranda</a>
-                </li>
-                <li class="footer-nav-item">
-                  <a href="{{ route('profile') }}" class="footer-nav-link">Profil</a>
-                </li>
-                <li class="footer-nav-item">
-                  <a href="{{ route('upt') }}" class="footer-nav-link">UPT Dinas</a>
-                </li>
-                <li class="footer-nav-item">
-                  <a href="{{ route('berita') }}" class="footer-nav-link">Berita</a>
-                </li>
-                <li class="footer-nav-item">
-                  <a href="{{ route('kontak') }}" class="footer-nav-link"> Hubungi Kami </a>
-                </li>
-              </ul>
+              <li class="footer-nav-item">
+                <a href="{{ route('index') }}" class="footer-nav-link ">Beranda</a>
+              </li>
+              <li class="footer-nav-item">
+                <a href="{{ route('profile') }}" class="footer-nav-link">Profil</a>
+              </li>
+              <li class="footer-nav-item">
+                <a href="{{ route('upt') }}" class="footer-nav-link">UPT Dinas</a>
+              </li>
+              <li class="footer-nav-item">
+                <a href="{{ route('berita') }}" class="footer-nav-link">Berita</a>
+              </li>
+              <li class="footer-nav-item">
+                <a href="{{ route('kontak') }}" class="footer-nav-link"> Hubungi Kami </a>
+              </li>
+            </ul>
           </div>
           <div class="footer-hours">
             <h3 class="footer-title">Jam Operasional</h3>
@@ -193,4 +196,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js" integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D" crossorigin="anonymous"></script>
+
 </html>
