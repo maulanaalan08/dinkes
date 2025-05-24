@@ -10,14 +10,14 @@ class PuskesmasController extends Controller
 {
     public function index()
     {
-        $role = auth()->user();
+        $role = Auth::user()->role;
         $puskesmas = Puskesmas::paginate(5);
         return view('user.puskesmas', compact('puskesmas', 'role'));
     }
 
     public function create()
     {
-        $role = auth()->user();
+        $role = Auth::user()->role;
         $puskesmas = Puskesmas::all();
         return view('user.add-puskesmas', compact('puskesmas', 'role'));
     }
@@ -56,7 +56,7 @@ class PuskesmasController extends Controller
 
     public function edit($id)
     {
-        $role = auth()->user();
+        $role = Auth::user()->role;
         $puskesmas = Puskesmas::findOrFail($id);
         return view('user.edit-puskesmas', compact('puskesmas', 'role'));
     }

@@ -126,7 +126,7 @@
         <nav class="breadcrumb">
           <ul class="breadcrumb-list">
             <li class="breadcrumb-item">
-              <a href="index.html" class="breadcrumb-link">Beranda</a>
+              <a href="{{ route('index') }}" class="breadcrumb-link">Beranda</a>
             </li>
             <li class="breadcrumb-item">
               <span class="breadcrumb-current">UPT Dinas</span>

@@ -10,14 +10,14 @@ class BeritaController extends Controller
 {
     public function index()
     {
-        $role = auth()->user();
+        $role = Auth::user()->role;
         $berita = Berita::paginate(5);
         return view('user.berita', compact('berita', 'role'));
     }
 
     public function create()
     {
-        $role = auth()->user();
+        $role = Auth::user()->role;
         $berita = Berita::all();
         return view('user.add-berita', compact('berita', 'role'));
     }
@@ -54,7 +54,7 @@ class BeritaController extends Controller
 
     public function edit($id)
     {
-        $role = auth()->user();
+        $role = Auth::user()->role;
         $berita = Berita::findOrFail($id);
         return view('user.edit-berita', compact('berita', 'role'));
     }
