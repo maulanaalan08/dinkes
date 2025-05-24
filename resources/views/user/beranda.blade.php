@@ -26,58 +26,58 @@
             <hr class="sidebar-divider my-0">
 
             @if ($role == 'admin')
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('layanan.admin') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Layanan</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('puskesmas.admin') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Puskesmas</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('layanan.admin') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Approve Layanan</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('puskesmas.admin') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Approve Puskesmas</span>
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('berita.admin') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Berita</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('beranda.admin') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Beranda</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('berita.admin') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Approve Berita</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('beranda.admin') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Approve Beranda</span>
+                </a>
+            </li>
             @else
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.layanan') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Layanan</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('user.layanan') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Layanan</span>
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('puskesmas.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Puskesmas</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('berita.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Berita</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('puskesmas.index') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Puskesmas</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('berita.index') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Berita</span>
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('beranda.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Beranda</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('beranda.index') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Beranda</span>
+                </a>
+            </li>
             @endif
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -124,26 +124,29 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($role == 'admin')    
-                                                    <form action="{{ route('beranda.aprove', $b->id_beranda) }}" method="POST" >
-                                                        {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-sm btn-{{ $b->status === 'active' ? 'success' : 'secondary' }}">
-                                                            {{ $b->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
-                                                        </button>
-                                                    </form>
+                                                @if ($role == 'admin')
+                                                <form action="{{ route('beranda.aprove', $b->id_beranda) }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    <button type="submit" class="btn btn-sm btn-{{ $b->status === 'active' ? 'success' : 'secondary' }}">
+                                                        {{ $b->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
+                                                    </button>
+                                                </form>
                                                 @else
-                                                    <form action="{{ route('beranda.destroy', $b->id_beranda) }}" method="POST">
-                                                        {{ csrf_field() }}
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>
-                                                    <a href="{{ route('beranda.edit', $b->id_beranda) }}" class="btn btn-warning">Edit</a>
+                                                <form action="{{ route('beranda.destroy', $b->id_beranda) }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                                <a href="{{ route('beranda.edit', $b->id_beranda) }}" class="btn btn-warning">Edit</a>
                                                 @endif
                                             </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
+                                    @if ($role == 'user')
                                     <a href="/beranda/create" class="btn btn-primary">Tambah</a>
+                                    @else
+                                    @endif
                                 </table>
                             </div>
                         </div>

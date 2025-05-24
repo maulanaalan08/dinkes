@@ -27,58 +27,58 @@
             <hr class="sidebar-divider my-0">
 
             @if ($role == 'admin')
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('layanan.admin') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Layanan</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('puskesmas.admin') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Puskesmas</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('layanan.admin') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Approve Layanan</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('puskesmas.admin') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Approve Puskesmas</span>
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('berita.admin') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Berita</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('beranda.admin') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Beranda</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('berita.admin') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Approve Berita</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('beranda.admin') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Approve Beranda</span>
+                </a>
+            </li>
             @else
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.layanan') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Layanan</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('user.layanan') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Layanan</span>
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('puskesmas.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Puskesmas</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('berita.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Berita</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('puskesmas.index') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Puskesmas</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('berita.index') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Berita</span>
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('beranda.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Beranda</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('beranda.index') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Beranda</span>
+                </a>
+            </li>
             @endif
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -122,26 +122,29 @@
                                             <td>{{ $b->alamat }}</td>
                                             <td>{{ $b->no_telp }}</td>
                                             <td>
-                                                @if ($role == 'admin')    
-                                                    <form action="{{ route('puskesmas.setuju', $b->id_data_puskesmas) }}" method="POST" >
-                                                        {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-sm btn-{{ $b->status === 'active' ? 'success' : 'secondary' }}">
-                                                            {{ $b->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
-                                                        </button>
-                                                    </form>
+                                                @if ($role == 'admin')
+                                                <form action="{{ route('puskesmas.setuju', $b->id_data_puskesmas) }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    <button type="submit" class="btn btn-sm btn-{{ $b->status === 'active' ? 'success' : 'secondary' }}">
+                                                        {{ $b->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
+                                                    </button>
+                                                </form>
                                                 @else
-                                                    <form action="{{ route('puskesmas.destroy', $b->id_data_puskesmas) }}" method="POST">
-                                                        {{ csrf_field() }}
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>
-                                                    <a href="{{ route('puskesmas.edit', $b->id_data_puskesmas) }}" class="btn btn-warning">Edit</a>
+                                                <form action="{{ route('puskesmas.destroy', $b->id_data_puskesmas) }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                                <a href="{{ route('puskesmas.edit', $b->id_data_puskesmas) }}" class="btn btn-warning">Edit</a>
                                                 @endif
                                             </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
+                                    @if ($role == 'user')
                                     <a href="/puskesmas/store" class="btn btn-primary">Tambah</a>
+                                    @else
+                                    @endif
                                 </table>
                             </div>
                         </div>
@@ -165,4 +168,5 @@
     <script src="js/sb-admin-2.min.js"></script>
     <script src="js/demo/datatables-demo.js"></script>
 </body>
+
 </html>
