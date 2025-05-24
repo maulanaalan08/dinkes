@@ -111,11 +111,12 @@
       <div class="container section-container">
         <h2 class="section-title">Berita & Pengumuman</h2>
         <div class="filter-container">
-          <button class="filter-button active">Semua</button>
-          <button class="filter-button">Pengumuman</button>
-          <button class="filter-button">Kegiatan</button>
-          <button class="filter-button">Artikel</button>
+          <a href="{{ route('berita') }}" class="filter-button {{ request('jenis_berita') == null ? 'active' : '' }}">Semua</a>
+          <a href="{{ route('berita', ['jenis_berita' => 'Pengumuman']) }}" class="filter-button {{ request('jenis_berita') == 'Pengumuman' ? 'active' : '' }}">Pengumuman</a>
+          <a href="{{ route('berita', ['jenis_berita' => 'Kegiatan']) }}" class="filter-button {{ request('jenis_berita') == 'Kegiatan' ? 'active' : '' }}">Kegiatan</a>
+          <a href="{{ route('berita', ['jenis_berita' => 'Artikel']) }}" class="filter-button {{ request('jenis_berita') == 'Artikel' ? 'active' : '' }}">Artikel</a>
         </div>
+
 
         @inject('str', 'Illuminate\Support\Str')
         <div id="news-container" class="news-grid">
