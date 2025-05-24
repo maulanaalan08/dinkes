@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hubungi Kami - Dinas Pemerintah</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
     <link rel="stylesheet" href="css/styles.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   </head>
   <body>
     <div id="app" class="site-container">
@@ -39,12 +41,14 @@
                 </li>
               </ul>
             </nav>
-            <button id="login-button" class="btn btn-primary">Login</button>
-            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle menu mobile" aria-expanded="false">
-              <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
-            </button>
+            @if (Route::has('login'))
+              <div class="top-right links">
+                @if (Auth::check())
+                @else
+                  <a href="{{ route('show') }}" class="btn btn-primary">Login</a>
+                @endif
+              </div>
+            @endif
           </div>
         </div>
         <div id="mobile-menu" class="mobile-menu">
@@ -109,32 +113,31 @@
               <h3 class="contact-subtitle">Informasi Kontak</h3>
               <ul class="contact-list">
                 <li class="contact-item">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="contact-icon fill="none" viewBox="0 0 24 24" stroke="currentColor" >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="contact-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" >
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span>Jl. Contoh No. 123, Kota, Provinsi</span>
+                  <span>Jl. Raya Jemursari No.197, Sidosermo, Kec. Wonocolo, Surabaya, Jawa Timur 60239</span>
                 </li>
                 <li class="contact-item">
                   <svg xmlns="http://www.w3.org/2000/svg" class="contact-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                   </svg>
-                  <span>(021) 1234-5678</span>
+                  <span>(031) 8439473</span>
                 </li>
                 <li class="contact-item">
                   <svg xmlns="http://www.w3.org/2000/svg" class="contact-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" > <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                   </svg>
-                  <span>info@dinaspemerintah.go.id</span>
+                  <span>dinkes@surabaya.go.id</span>
                 </li>
               </ul>
 
               <div class="map-container">
                 <h3 class="contact-subtitle">Lokasi Kami</h3>
-                <div class="map-placeholder">
+                <div class="map-placeholder" id="googleMap">
                   <svg xmlns="http://www.w3.org/2000/svg" class="map-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
                   </svg>
-                  <p>Peta akan ditampilkan di sini</p>
                 </div>
               </div>
             </div>
@@ -208,7 +211,19 @@
         </div>
       </footer>
     </div>
+    <script src="js/script.js"></script>
+    <script>
+        function initialize() {
+        var propertiPeta = {
+            center:new google.maps.LatLng(-7.316943336546782,112.7517433705426),
+            zoom:15,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+        
+        var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
   </body>
-  <script src="js/script.js"></script>
 </html>
 

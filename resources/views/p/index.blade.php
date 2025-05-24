@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portal Dinas Pemerintah</title>
+  <title>Portal - Dinas Pemerintah</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
@@ -99,13 +100,27 @@
 
     <main class="main-content">
       <section id="beranda-tab" class="content-tab active">
-        <div class="hero-section">
-          <img src="assets/dinas-kesehatan-kota-surabaya.jpg" alt="Hero Banner Dinas Pemerintah" class="hero-image"/>
-          <div class="hero-overlay">
-            <div class="hero-content">
-              <h1 class="hero-title">Selamat Datang</h1>
-              <p class="hero-subtitle">Portal Resmi Dinas Pemerintah</p>
+        <div class="d-flex justify-content-center bg-secondary bg-gradient bg-opacity-75">
+          <div id="carouselExampleCaptions" class="container px-5 carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner row w-50 mx-auto">
+                @foreach ($beranda as $b)
+                <div class=" carousel-item @if($loop->first) active @endif">
+                    <img src="{{ asset('beranda/' . $b->gambar) }}" class="d-block w-100" alt="{{ $b->gambar }}">
+                    <div class="text-dark carousel-caption d-none d-md-block">
+                        <h3>{{ $b->judul }}</h5>
+                        <p>{{ $b->detail }}</p>
+                    </div>
+                </div>
+                @endforeach
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
         </div>
 
@@ -113,7 +128,7 @@
           <h2 class="section-title">Layanan Kami</h2>
           @foreach ($layanan as $l) 
             <div class="services-grid">
-              <article class="service-card">
+              <article class="service-card text-center" >
                 <img src="{{ asset('uploads/' . $l->gambar)}}" alt="{{ $l->gambar }}" class="service-image" style="width:400px; height:300px"/>
                 <h3 class="service-title">{{ $l->judul }}</h3>
                 <p class="service-description">{{ $l->detail }}</p>
@@ -175,5 +190,7 @@
   </div>
 </body>
 <script src="js/script.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js" integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D" crossorigin="anonymous"></script>
 </html>

@@ -6,6 +6,7 @@
     <title>UPT Dinas - Dinas Pemerintah</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="cdn.datatables.net/2.3.1/css/dataTables.dataTables.min.css">
   </head>
     <body>
     <div id="app" class="site-container">
@@ -38,12 +39,14 @@
                 </li>
               </ul>
             </nav>
-            <button id="login-button" class="btn btn-primary">Login</button>
-            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle menu mobile" aria-expanded="false">
-              <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
-            </button>
+            @if (Route::has('login'))
+              <div class="top-right links">
+                @if (Auth::check())
+                @else
+                  <a href="{{ route('show') }}" class="btn btn-primary">Login</a>
+                @endif
+              </div>
+            @endif
           </div>
         </div>
         <div id="mobile-menu" class="mobile-menu">
@@ -110,43 +113,37 @@
             </ul>
           </nav>
         </div>
-        <div class="container section-container">
+        <div class="container saection-container">
           <h2 class="section-title">Unit Pelaksana Teknis</h2>
           <div class="upt-grid">
-            @foreach ($puskesmas as $p)
-              <article class="upt-card">
-                <img src="{{ asset('puskesmas/' . $l->gambar)}}" alt="{{ $l->gambar }}" class="upt-image"/>
-                <h3 class="upt-title">{{ $p->tempat }}</h3>
-                <p class="upt-description">{{ $p->detail }}</p>
-              </article>
-            @endforeach
+            <table class="table display" id="table" border="2">
+              <thead>
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col">Nama Puskesmas</th>
+                  <th scope="col">Nama Kepala Puskesmas</th>
+                  <th scope="col">Alamat Puskesmas</th>
+                  <th scope="col">No. Telp</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($puskesmas as $p)
+                <tr>
+                  <th scope="row">{{ $loop->iteration }}</th>
+                  <td>{{ $p->nama }}</td>
+                  <td>{{ $p->kepala_puskesmas }}</td>
+                  <td>{{ $p->alamat }}</td>
+                  <td>{{ $p->no_telp }}</td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
           </div>
 
           <nav class="pagination">
             <ul class="pagination-list">
-              <li class="pagination-item">
-                <a href="#" class="pagination-prev pagination-disabled"aria-label="Previous page">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                  </svg>
-                </a>
-              </li>
-              <li class="pagination-item">
-                <a href="#" class="pagination-link active">1</a>
-              </li>
-              <li class="pagination-item">
-                <a href="#" class="pagination-link">2</a>
-              </li>
-              <li class="pagination-item">
-                <a href="#" class="pagination-link">3</a>
-              </li>
-              <li class="pagination-item">
-                <a href="#" class="pagination-next" aria-label="Next page">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                  </svg>
-                </a>
-              </li>
+
+              
             </ul>
           </nav>
         </div>
@@ -203,5 +200,9 @@
       </footer>
     </div>
     <script src="js/script.js"></script>
+    <script src="cdn.datatables.net/2.3.1/js/dataTables.min.js"></script>
   </body>
+  <script>
+    new DataTable('#table');
+  </script>
 </html>

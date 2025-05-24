@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Login - Dinas Pemerintahan</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -35,11 +35,10 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
+                    <img src="assets/Logo Dinas.png" alt="Logo Dinas Pemerintah" class="navbar-brand" style=" width:55px; height:55px" />
+                    <a class="navbar-brand" href="{{ url('/') }}">Dinas Pemerintahan</a>
                 </div>
-
+                    
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
