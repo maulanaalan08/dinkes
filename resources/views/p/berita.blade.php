@@ -80,65 +80,71 @@
         @inject('str', 'Illuminate\Support\Str')
         <div id="news-container" class="news-grid">
           @foreach ($berita as $b)
-            <article class="news-card text-center mb-4">
-              <img src="{{ asset('berita/' . $b->gambar) }}" alt="{{ $b->gambar }}" style="width:300px; height:400px" class="news-image" />
-              <h3 class="news-title">{{ $b->judul }}</h3>
-              <p class="card-text">{{ $str->limit($b->detail, 50) }}</p>
-              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalBerita{{ $b->id_berita }}">
-                Baca selengkapnya
-              </button>
-            </article>
+          <article class="news-card text-center mb-4">
+            <img src="{{ asset('berita/' . $b->gambar) }}" alt="{{ $b->gambar }}" style="width:300px; height:400px" class="news-image" />
+
+            <p class="text-muted mt-2" style="font-size: 0.875rem;">
+              Di Upload {{ $b->updated_at->format('d M Y') }}
+            </p>
+
+            <h3 class="news-title">{{ $b->judul }}</h3>
+            <p class="card-text">{{ $str->limit($b->detail, 50) }}</p>
+            <a href="{{ route('berita.detail', $b->id_berita) }}" class="btn btn-primary">
+              Baca selengkapnya
+            </a>
+          </article>
           @endforeach
         </div>
+
 
         <div class="d-flex justify-content-center">
           <ul class="pagination">
             @if ($berita->onFirstPage())
-              <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
             @else
-              <li class="page-item">
-                <a class="page-link" href="{{ $berita->appends(request()->query())->previousPageUrl() }}" rel="prev">&laquo;</a>
-              </li>
+            <li class="page-item">
+              <a class="page-link" href="{{ $berita->appends(request()->query())->previousPageUrl() }}" rel="prev">&laquo;</a>
+            </li>
             @endif
             @for ($i = 1; $i <= $berita->lastPage(); $i++)
               <li class="page-item {{ ($i == $berita->currentPage()) ? 'active' : '' }}">
                 <a class="page-link" href="{{ $berita->appends(request()->query())->url($i) }}">{{ $i }}</a>
               </li>
-            @endfor
-            @if ($berita->hasMorePages())
+              @endfor
+              @if ($berita->hasMorePages())
               <li class="page-item">
                 <a class="page-link" href="{{ $berita->appends(request()->query())->nextPageUrl() }}" rel="next">&raquo;</a>
               </li>
-            @else
+              @else
               <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-            @endif
+              @endif
           </ul>
         </div>
       </div>
     </main>
-    
-    @foreach ($berita as $b)  
-      <div class="modal fade" id="modalBerita{{ $b->id_berita }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3 class="modal-title fs-5" id="modalLabel">{{ $b->id_berita }}</h3>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+    @foreach ($berita as $b)
+    <div class="modal fade" id="modalBerita{{ $b->id_berita }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title fs-5" id="modalLabel">{{ $b->id_berita }}</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <img src="{{ asset('berita/' . $b->gambar) }}" alt="{{ $b->judul }}" style="width:400px; height:300px" class="img-fluid mb-3">
+              <h3>{{ $b->judul }}</h3>
+              <p>{{ $b->detail }}</p>
             </div>
-            <div class="modal-body">
-              <div class="container">
-                <img src="{{ asset('berita/' . $b->gambar) }}" alt="{{ $b->judul }}" style="width:400px; height:300px" class="img-fluid mb-3">
-                <h3>{{ $b->judul }}</h3>
-                <p>{{ $b->detail }}</p>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Simpan</button>
-                <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
-              </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Simpan</button>
+              <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
             </div>
           </div>
         </div>
       </div>
+    </div>
     @endforeach
 
     <footer class="site-footer">

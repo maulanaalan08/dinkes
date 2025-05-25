@@ -846,3 +846,28 @@ a {
 .hidden {
   display: none !important;
 }
+
+.news-detail-text {
+    font-size: 1.125rem;         /* Ukuran font nyaman dibaca (18px) */
+    line-height: 1.8;            /* Spasi antar baris */
+    text-align: justify;         /* Rata kanan-kiri seperti koran */
+    color: #333;                 /* Warna teks netral */
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.news-title {
+    font-size: 2rem;             /* Sekitar 32px */
+    font-weight: 700;            /* Tebal */
+    text-align: center;          /* Tengah */
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    color: #222;
+    font-family: 'Inter', sans-serif;
+}
+
+
+.news-detail-text p {
+    margin-bottom: 1.2rem;       /* Spasi antar paragraf */
+}
+

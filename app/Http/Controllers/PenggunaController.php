@@ -55,4 +55,10 @@ class PenggunaController extends Controller
             return route('user.layanan');
         }
     }
+
+    public function beritaDetail($id)
+    {
+        $berita = Berita::findOrFail($id);
+        return view('p.berita-detail', compact('berita'));
+    }
 }
