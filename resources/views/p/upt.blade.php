@@ -6,9 +6,20 @@
   <title>UPT Dinas - Dinas Pemerintah</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
+<<<<<<< HEAD
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+=======
+
+  <!-- Font dan Style -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+
+  <!-- Bootstrap CSS (jika digunakan) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+>>>>>>> 3088015 (Add filtering UPT)
 </head>
 <body>
   <div id="app" class="site-container">
@@ -125,8 +136,8 @@
             <label for="filter-kecamatan" class="form-label">Filter Kecamatan</label>
             <select id="filter-kecamatan" class="form-select">
               <option value="">Semua Kecamatan</option>
-              @foreach ($kecamatan as $kec)
-              <option value="{{ $kec->nama }}">{{ $kec->nama }}</option>
+              @foreach ($kecamatanList as $kecamatan)
+              <option value="{{ $kecamatan }}">{{ $kecamatan }}</option>
               @endforeach
             </select>
           </div>
@@ -134,8 +145,8 @@
             <label for="filter-kelurahan" class="form-label">Filter Kelurahan</label>
             <select id="filter-kelurahan" class="form-select">
               <option value="">Semua Kelurahan</option>
-              @foreach ($kelurahan as $kel)
-              <option value="{{ $kel->nama }}">{{ $kel->nama }}</option>
+              @foreach ($kelurahanList as $kelurahan)
+              <option value="{{ $kelurahan }}">{{ $kelurahan }}</option>
               @endforeach
             </select>
           </div>

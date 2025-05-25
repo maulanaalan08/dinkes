@@ -132,22 +132,12 @@
                             <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat Puskesmas">
                         </div>
                         <div class="mb-3">
-                            <label for="kecamatan" class="form-label">Nama Kecamatan</label>
-                            <select class="form-select" id="id_kecamatan" name="kecamatan" required>
-                                <option value="">-- Pilih Kecamatan --</option>
-                                @foreach ($kecamatan as $k)
-                                    <option value="{{ $k->nama }}" name="id_kecamatan">{{ $k->nama }}</option>
-                                @endforeach
-                            </select>
+                            <label for="kecamatan" class="form-label">Kecamatan Puskesmas</label>
+                            <input type="text" class="form-control" id="kecamatan" name="kecamatan" placeholder="Masukkan kecamatan Puskesmas">
                         </div>
                         <div class="mb-3">
-                            <label for="kelurahan" class="form-label">Nama kelurahan</label>
-                            <select class="form-select" id="kelurahan" name="kelurahan" required>
-                                <option value="">-- Pilih Kelurahan --</option>
-                                @foreach ($kelurahan as $k)
-                                    <option value="{{ $k->nama }}" name="kelurahan">{{ $k->nama }}</option>
-                                @endforeach
-                            </select>
+                            <label for="kelurahan" class="form-label">Kelurahan Puskesmas</label>
+                            <input type="text" class="form-control" id="kelurahan" name="kelurahan" placeholder="Masukkan kelurahan Puskesmas">
                         </div>
                         <div class="mb-3">
                             <label for="no_telp" class="form-label">No Telepon Puskesmas</label>

@@ -13,6 +13,10 @@
 <body>
     <div id="app" class="site-container">
         <header class="site-header">
+            <button class="navbar-toggler d-block d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
             <div class="container header-container">
                 <div class="logo-container">
                     <img src="{{ asset('assets/Logo Dinas.png')}}" alt="Logo Dinas Pemerintah" class="logo-image" />
