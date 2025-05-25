@@ -109,6 +109,8 @@
                                             <th>Nama Puskesmas</th>
                                             <th>Kepala Puskesmas</th>
                                             <th>Alamat Puskesmas</th>
+                                            <th>Kecamatan</th>
+                                            <th>Kelurahan</th>
                                             <th>No Telepon Puskesmas</th>
                                             <th>Action</th>
                                         </tr>
@@ -120,6 +122,8 @@
                                             <td>{{ $b->nama }}</td>
                                             <td>{{ $b->kepala_puskesmas }}</td>
                                             <td>{{ $b->alamat }}</td>
+                                            <td>{{ $b->kecamatan }}</td>
+                                            <td>{{ $b->kelurahan }}</td>
                                             <td>{{ $b->no_telp }}</td>
                                             <td>
                                                 @if ($role == 'admin')

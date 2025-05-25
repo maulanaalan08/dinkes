@@ -108,6 +108,14 @@
                             <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat Puskesmas">
                         </div>
                         <div class="mb-3">
+                            <label for="kecamatan" class="form-label">Kecamatan Puskesmas</label>
+                            <input type="text" class="form-control" id="kecamatan" name="kecamatan" placeholder="Masukkan kecamatan Puskesmas">
+                        </div>
+                        <div class="mb-3">
+                            <label for="kelurahan" class="form-label">Kelurahan Puskesmas</label>
+                            <input type="text" class="form-control" id="kelurahan" name="kelurahan" placeholder="Masukkan kelurahan Puskesmas">
+                        </div>
+                        <div class="mb-3">
                             <label for="no_telp" class="form-label">No Telepon Puskesmas</label>
                             <input type="number" class="form-control" id="no_telp" name="no_telp" placeholder="Masukkan No. Telepon">
                         </div>

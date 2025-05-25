@@ -7,26 +7,13 @@
   <title>UPT Dinas - Dinas Pemerintah</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="cdn.datatables.net/2.3.1/css/dataTables.dataTables.min.css">
 
-  <!-- DataTables CSS -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-
-  <!-- jQuery (wajib) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <!-- DataTables JS -->
-  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-  <!-- DataTables CSS + JS + Bootstrap 5 Integration -->
+  <!-- Font dan Style -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
-
+  <!-- Bootstrap CSS (jika digunakan) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
@@ -122,21 +109,39 @@
     <!-- Main Content -->
     <main class="main-content">
       <!-- Breadcrumb -->
-      <div class="container">
-        <nav class="breadcrumb">
-          <ul class="breadcrumb-list">
-            <li class="breadcrumb-item">
-              <a href="{{ route('index') }}" class="breadcrumb-link">Beranda</a>
-            </li>
-            <li class="breadcrumb-item">
-              <span class="breadcrumb-current">UPT Dinas</span>
-            </li>
-          </ul>
+      <div class="container mt-4">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Beranda</a></li>
+            <li class="breadcrumb-item active" aria-current="page">UPT Dinas</li>
+          </ol>
         </nav>
       </div>
+
+
       <!-- TABEL -->
       <div class="container mt-4 mb-5" style="margin-bottom: 120px;">
         <h2 class="section-title mb-4">Unit Pelaksana Teknis</h2>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="filter-kecamatan" class="form-label">Filter Kecamatan</label>
+            <select id="filter-kecamatan" class="form-select">
+              <option value="">Semua Kecamatan</option>
+              @foreach ($kecamatanList as $kecamatan)
+              <option value="{{ $kecamatan }}">{{ $kecamatan }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="filter-kelurahan" class="form-label">Filter Kelurahan</label>
+            <select id="filter-kelurahan" class="form-select">
+              <option value="">Semua Kelurahan</option>
+              @foreach ($kelurahanList as $kelurahan)
+              <option value="{{ $kelurahan }}">{{ $kelurahan }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
 
         <div class="table-responsive">
           <table id="table" class="table table-striped table-bordered">
@@ -146,6 +151,8 @@
                 <th>Nama Puskesmas</th>
                 <th>Nama Kepala Puskesmas</th>
                 <th>Alamat Puskesmas</th>
+                <th>Kecamatan</th>
+                <th>Kelurahan</th>
                 <th>No. Telp</th>
               </tr>
             </thead>
@@ -156,6 +163,8 @@
                 <td>{{ $p->nama }}</td>
                 <td>{{ $p->kepala_puskesmas }}</td>
                 <td>{{ $p->alamat }}</td>
+                <td class="col-kecamatan">{{ $p->kecamatan }}</td>
+                <td class="col-kelurahan">{{ $p->kelurahan }}</td>
                 <td>{{ $p->no_telp }}</td>
               </tr>
               @endforeach
@@ -217,38 +226,64 @@
     </footer>
   </div>
   <script src="js/script.js"></script>
-  <script src="cdn.datatables.net/2.3.1/js/dataTables.min.js"></script>
-</body>
-<!-- jQuery (harus di-load lebih dulu) -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- jQuery dan Bootstrap Bundle -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- DataTables Core -->
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <!-- DataTables JS + Bootstrap Integration -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
-<!-- DataTables Bootstrap 5 Integration -->
-<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-
-<!-- Inisialisasi DataTable -->
-<script>
-  $(document).ready(function() {
-    $('#table').DataTable({
-      language: {
-        search: "Cari:",
-        lengthMenu: "Tampilkan _MENU_ entri",
-        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
-        paginate: {
-          first: "Awal",
-          last: "Akhir",
-          next: "Berikutnya",
-          previous: "Sebelumnya"
-        },
-        zeroRecords: "Tidak ada data ditemukan",
-        infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
-        infoFiltered: "(difilter dari _MAX_ total entri)"
-      }
+  <!-- Inisialisasi DataTables -->
+  <script>
+    $(document).ready(function() {
+      $('#table').DataTable({
+        language: {
+          search: "Cari:",
+          lengthMenu: "Tampilkan _MENU_ entri",
+          info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+          paginate: {
+            first: "Awal",
+            last: "Akhir",
+            next: "Berikutnya",
+            previous: "Sebelumnya"
+          },
+          zeroRecords: "Tidak ada data ditemukan",
+          infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+          infoFiltered: "(difilter dari _MAX_ total entri)"
+        }
+      });
     });
-  });
-</script>
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const kecamatanFilter = document.getElementById('filter-kecamatan');
+      const kelurahanFilter = document.getElementById('filter-kelurahan');
+      const rows = document.querySelectorAll('#table tbody tr');
+
+      function filterTable() {
+        const kecamatanVal = kecamatanFilter.value.toLowerCase();
+        const kelurahanVal = kelurahanFilter.value.toLowerCase();
+
+        rows.forEach(row => {
+          const kecamatan = row.querySelector('.col-kecamatan')?.textContent.toLowerCase();
+          const kelurahan = row.querySelector('.col-kelurahan')?.textContent.toLowerCase();
+
+          const show = (!kecamatanVal || kecamatan.includes(kecamatanVal)) &&
+            (!kelurahanVal || kelurahan.includes(kelurahanVal));
+
+          row.style.display = show ? '' : 'none';
+        });
+      }
+
+      kecamatanFilter.addEventListener('change', filterTable);
+      kelurahanFilter.addEventListener('change', filterTable);
+    });
+  </script>
+</body>
+
+
 
 
 </html>

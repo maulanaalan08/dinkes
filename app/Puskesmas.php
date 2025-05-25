@@ -13,6 +13,8 @@ class Puskesmas extends Model
         'kepala_puskesmas',
         'alamat',
         'no_telp',
+        'kecamatan',
+        'kelurahan',
         'status',
     ];
 }

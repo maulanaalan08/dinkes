@@ -29,6 +29,8 @@ class PuskesmasController extends Controller
             'kepala_puskesmas'  => 'required|string|max:255',
             'alamat'   => 'required|string|max:255',
             'no_telp'   => 'required|string|max:255',
+            'kecamatan' => 'required|string|max:255',
+            'kelurahan' => 'required|string|max:255',
         ]);
 
 
@@ -38,6 +40,8 @@ class PuskesmasController extends Controller
             'kepala_puskesmas'  => $request->kepala_puskesmas,
             'alamat'   => $request->alamat,
             'no_telp'   => $request->no_telp,
+            'kecamatan' => $request->kecamatan,
+            'kelurahan' => $request->kelurahan,
             'status'  => 'nonActive',
         ]);
 
@@ -67,6 +71,8 @@ class PuskesmasController extends Controller
             'nama'   => 'required|string|max:255',
             'kepala_puskesmas'  => 'required|string|max:255',
             'alamat'   => 'required|string|max:255',
+            'kecamatan' => 'required|string|max:255',
+            'kelurahan' => 'required|string|max:255',
             'no_telp'   => 'required|string|max:255',
         ]);
 
@@ -75,6 +81,8 @@ class PuskesmasController extends Controller
         $puskesmas->nama = $request->nama;
         $puskesmas->kepala_puskesmas = $request->kepala_puskesmas;
         $puskesmas->alamat = $request->alamat;
+        $puskesmas->kecamatan = $request->kecamatan;
+        $puskesmas->kelurahan = $request->kelurahan;
         $puskesmas->no_telp = $request->no_telp;
         $puskesmas->save();
 

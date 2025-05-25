@@ -43,7 +43,9 @@ class PenggunaController extends Controller
     public function upt()
     {
         $puskesmas = Puskesmas::where('status', 'active')->paginate(5);
-        return view('p.upt', compact('puskesmas'));
+        $kecamatanList = Puskesmas::select('kecamatan')->distinct()->pluck('kecamatan');
+        $kelurahanList = Puskesmas::select('kelurahan')->distinct()->pluck('kelurahan');
+        return view('p.upt', compact('puskesmas', 'kecamatanList', 'kelurahanList'));
     }
     public function cek_login(Request $request)
     {

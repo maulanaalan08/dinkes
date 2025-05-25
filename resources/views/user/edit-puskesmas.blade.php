@@ -111,6 +111,14 @@
                             <input type="text" class="form-control" name="alamat" value="{{ $puskesmas->alamat }}">
                         </div>
                         <div class="mb-3">
+                            <label>Kecamatan</label>
+                            <input type="text" class="form-control" name="kecamatan" value="{{ $puskesmas->kecamatan }}">
+                        </div>
+                        <div class="mb-3">
+                            <label>Kelurahan</label>
+                            <input type="text" class="form-control" name="kelurahan" value="{{ $puskesmas->kelurahan }}">
+                        </div>
+                        <div class="mb-3">
                             <label>No Telepon</label>
                             <input type="number" class="form-control" name="no_telp" value="{{ $puskesmas->no_telp }}">
                         </div>
