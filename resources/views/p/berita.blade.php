@@ -15,7 +15,7 @@
     <header class="site-header">
       <div class="container header-container">
         <div class="logo-container">
-          <img src="{{ asset('assets/Logo Dinas.png') }}" alt="Logo Dinas Pemerintah" class="logo-image" />
+          <img src="assets/Logo Dinas.png" alt="Logo Dinas Pemerintah" class="logo-image" />
           <div class="logo-text">
             <h1 class="site-title">Dinas Pemerintah</h1>
             <p class="site-tagline">Melayani Dengan Sepenuh Hati</p>
@@ -25,7 +25,7 @@
           <nav class="main-navigation">
             <ul class="nav-list">
               <li class="nav-item">
-                <a href="{{ route('index') }}" class="nav-link ">Beranda</a>
+                <a href="{{ route('index') }}" class="nav-link active">Beranda</a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('profile') }}" class="nav-link">Profil</a>
@@ -34,7 +34,7 @@
                 <a href="{{ route('upt') }}" class="nav-link">UPT Dinas</a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('berita') }}" class="nav-link active">Berita</a>
+                <a href="{{ route('berita') }}" class="nav-link">Berita</a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('kontak') }}" class="nav-link"> Hubungi Kami </a>
@@ -49,12 +49,36 @@
             @endif
           </div>
           @endif
+          <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle menu mobile" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
         </div>
+      </div>
+      <div id="mobile-menu" class="mobile-menu">
+        <ul class="mobile-nav-list">
+          <li class="nav-item">
+            <a href="{{ route('index') }}" class="nav-link active">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('profile') }}" class="nav-link">Profil</a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('upt') }}" class="nav-link">UPT Dinas</a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('berita') }}" class="nav-link">Berita</a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('kontak') }}" class="nav-link"> Hubungi Kami </a>
+          </li>
+        </ul>
       </div>
     </header>
 
     <main class="main-content mt-4">
-      <div class="container">
+      <div class="container text-decoration-none">
         <nav class="breadcrumb">
           <ul class="breadcrumb-list">
             <li class="breadcrumb-item">
@@ -69,11 +93,11 @@
 
       <div class="container section-container">
         <h2 class="section-title">Berita & Pengumuman</h2>
-        <div class="filter-container">
-          <a href="{{ route('berita') }}" class="filter-button {{ request('jenis_berita') == null ? 'active' : '' }}">Semua</a>
-          <a href="{{ route('berita', ['jenis_berita' => 'Pengumuman']) }}" class="filter-button {{ request('jenis_berita') == 'Pengumuman' ? 'active' : '' }}">Pengumuman</a>
-          <a href="{{ route('berita', ['jenis_berita' => 'Kegiatan']) }}" class="filter-button {{ request('jenis_berita') == 'Kegiatan' ? 'active' : '' }}">Kegiatan</a>
-          <a href="{{ route('berita', ['jenis_berita' => 'Artikel']) }}" class="filter-button {{ request('jenis_berita') == 'Artikel' ? 'active' : '' }}">Artikel</a>
+        <div class="filter-container ">
+          <a href="{{ route('berita') }}" class="text-decoration-none filter-button {{ request('jenis_berita') == null ? 'active' : '' }}" >Semua</a>
+          <a href="{{ route('berita', ['jenis_berita' => 'Pengumuman']) }}" class="text-decoration-none filter-button {{ request('jenis_berita') == 'Pengumuman' ? 'active' : '' }}">Pengumuman</a>
+          <a href="{{ route('berita', ['jenis_berita' => 'Kegiatan']) }}" class="text-decoration-none filter-button {{ request('jenis_berita') == 'Kegiatan' ? 'active' : '' }}">Kegiatan</a>
+          <a href="{{ route('berita', ['jenis_berita' => 'Artikel']) }}" class="text-decoration-none filter-button {{ request('jenis_berita') == 'Artikel' ? 'active' : '' }}">Artikel</a>
         </div>
 
 
@@ -122,20 +146,14 @@
         </div>
       </div>
     </main>
-
-    @foreach ($berita as $b)
-    <div class="modal fade" id="modalBerita{{ $b->id_berita }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title fs-5" id="modalLabel">{{ $b->id_berita }}</h3>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-              <img src="{{ asset('berita/' . $b->gambar) }}" alt="{{ $b->judul }}" style="width:400px; height:300px" class="img-fluid mb-3">
-              <h3>{{ $b->judul }}</h3>
-              <p>{{ $b->detail }}</p>
+    
+    {{-- @foreach ($berita as $b)  
+      <div class="modal fade" id="modalBerita{{ $b->id_berita }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title fs-5" id="modalLabel">{{ $b->id_berita }}</h3>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary">Simpan</button>
@@ -144,8 +162,7 @@
           </div>
         </div>
       </div>
-    </div>
-    @endforeach
+    @endforeach --}}
 
     <footer class="site-footer">
       <div class="container footer-container">

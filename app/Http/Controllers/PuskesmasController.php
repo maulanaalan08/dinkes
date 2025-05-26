@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Puskesmas;
+use App\Kecamatan;
+use App\Kelurahan;
 use Illuminate\Support\Facades\Auth;
 
 class PuskesmasController extends Controller
@@ -12,6 +14,16 @@ class PuskesmasController extends Controller
     {
         $role = Auth::user()->role;
         $puskesmas = Puskesmas::paginate(5);
+        $kecamatan = Kecamatan::all();
+        $kelurahan = Kelurahan::all();
+
+        foreach( $kelurahan as $k ){
+            foreach( $kecamatan as $kec ){
+                if($k->id_kecamatan == $kec->id){
+                    $k->id_kecamatan = $kec->nama;
+                }
+            }
+        }
         return view('user.puskesmas', compact('puskesmas', 'role'));
     }
 
@@ -19,7 +31,18 @@ class PuskesmasController extends Controller
     {
         $role = Auth::user()->role;
         $puskesmas = Puskesmas::all();
-        return view('user.add-puskesmas', compact('puskesmas', 'role'));
+        
+        $kecamatan = Kecamatan::all();
+        $kelurahan = Kelurahan::all();
+
+        foreach( $kelurahan as $k ){
+            foreach( $kecamatan as $kec ){
+                if($k->id_kecamatan == $kec->id){
+                    $k->id_kecamatan = $kec->nama;
+                }
+            }
+        }
+        return view('user.add-puskesmas', compact('puskesmas','kecamatan', 'kelurahan', 'role'));
     }
 
     public function store(Request $request)

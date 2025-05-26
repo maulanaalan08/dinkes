@@ -1,28 +1,21 @@
 <!doctype html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UPT Dinas - Dinas Pemerintah</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
-
-  <!-- Font dan Style -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-
-  <!-- Bootstrap CSS (jika digunakan) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
-
 <body>
   <div id="app" class="site-container">
     <header class="site-header">
       <div class="container header-container">
         <div class="logo-container">
-          <img src="{{ asset('assets/Logo Dinas.png') }}" alt="Logo Dinas Pemerintah" class="logo-image" />
+          <img src="assets/Logo Dinas.png" alt="Logo Dinas Pemerintah" class="logo-image" />
           <div class="logo-text">
             <h1 class="site-title">Dinas Pemerintah</h1>
             <p class="site-tagline">Melayani Dengan Sepenuh Hati</p>
@@ -32,13 +25,13 @@
           <nav class="main-navigation">
             <ul class="nav-list">
               <li class="nav-item">
-                <a href="{{ route('index') }}" class="nav-link ">Beranda</a>
+                <a href="{{ route('index') }}" class="nav-link active">Beranda</a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('profile') }}" class="nav-link ">Profil</a>
+                <a href="{{ route('profile') }}" class="nav-link">Profil</a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('upt') }}" class="nav-link active ">UPT Dinas</a>
+                <a href="{{ route('upt') }}" class="nav-link">UPT Dinas</a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('berita') }}" class="nav-link">Berita</a>
@@ -56,24 +49,29 @@
             @endif
           </div>
           @endif
+          <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle menu mobile" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
         </div>
       </div>
       <div id="mobile-menu" class="mobile-menu">
         <ul class="mobile-nav-list">
-          <li class="mobile-nav-item">
-            <a href="index.html" class="mobile-nav-link"> Beranda </a>
+          <li class="nav-item">
+            <a href="{{ route('index') }}" class="nav-link active">Beranda</a>
           </li>
-          <li class="mobile-nav-item">
-            <a href="profil.html" class="mobile-nav-link">Profil</a>
+          <li class="nav-item">
+            <a href="{{ route('profile') }}" class="nav-link">Profil</a>
           </li>
-          <li class="mobile-nav-item">
-            <a href="upt.html" class="mobile-nav-link">UPT Dinas</a>
+          <li class="nav-item">
+            <a href="{{ route('upt') }}" class="nav-link">UPT Dinas</a>
           </li>
-          <li class="mobile-nav-item">
-            <a href="berita.html" class="mobile-nav-link">Berita</a>
+          <li class="nav-item">
+            <a href="{{ route('berita') }}" class="nav-link">Berita</a>
           </li>
-          <li class="mobile-nav-item">
-            <a href="kontak.html" class="mobile-nav-link"> Hubungi Kami </a>
+          <li class="nav-item">
+            <a href="{{ route('kontak') }}" class="nav-link"> Hubungi Kami </a>
           </li>
         </ul>
       </div>
@@ -111,8 +109,8 @@
       <!-- Breadcrumb -->
       <div class="container mt-4">
         <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Beranda</a></li>
+          <ol class="breadcrumb-list">
+            <li class="breadcrumb-item"><a href="{{ route('index') }}" class="text-decoration-none">Beranda</a></li>
             <li class="breadcrumb-item active" aria-current="page">UPT Dinas</li>
           </ol>
         </nav>
@@ -121,14 +119,14 @@
 
       <!-- TABEL -->
       <div class="container mt-4 mb-5" style="margin-bottom: 120px;">
-        <h2 class="section-title mb-4">Unit Pelaksana Teknis</h2>
+        <h2 class="section-title mb-4 mt-5">Unit Pelaksana Teknis</h2>
         <div class="row mb-3">
           <div class="col-md-6">
             <label for="filter-kecamatan" class="form-label">Filter Kecamatan</label>
             <select id="filter-kecamatan" class="form-select">
               <option value="">Semua Kecamatan</option>
-              @foreach ($kecamatanList as $kecamatan)
-              <option value="{{ $kecamatan }}">{{ $kecamatan }}</option>
+              @foreach ($kecamatan as $kec)
+              <option value="{{ $kec->nama }}">{{ $kec->nama }}</option>
               @endforeach
             </select>
           </div>
@@ -136,8 +134,8 @@
             <label for="filter-kelurahan" class="form-label">Filter Kelurahan</label>
             <select id="filter-kelurahan" class="form-select">
               <option value="">Semua Kelurahan</option>
-              @foreach ($kelurahanList as $kelurahan)
-              <option value="{{ $kelurahan }}">{{ $kelurahan }}</option>
+              @foreach ($kelurahan as $kel)
+              <option value="{{ $kel->nama }}">{{ $kel->nama }}</option>
               @endforeach
             </select>
           </div>

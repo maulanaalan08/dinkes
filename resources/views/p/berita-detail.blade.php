@@ -13,56 +13,76 @@
 <body>
     <div id="app" class="site-container">
         <header class="site-header">
-            <button class="navbar-toggler d-block d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
             <div class="container header-container">
                 <div class="logo-container">
-                    <img src="{{ asset('assets/Logo Dinas.png') }}" alt="Logo Dinas Pemerintah" class="logo-image" />
+                    <img src="{{ asset('assets/Logo Dinas.png')}}" alt="Logo Dinas Pemerintah" class="logo-image" />
                     <div class="logo-text">
                         <h1 class="site-title">Dinas Pemerintah</h1>
                         <p class="site-tagline">Melayani Dengan Sepenuh Hati</p>
                     </div>
                 </div>
                 <div class="header-actions">
-                    <nav class="main-navigation">
-                        <ul class="nav-list">
-                            <li class="nav-item">
-                                <a href="{{ route('index') }}" class="nav-link ">Beranda</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('profile') }}" class="nav-link">Profil</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('upt') }}" class="nav-link">UPT Dinas</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('berita') }}" class="nav-link active">Berita</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('kontak') }}" class="nav-link"> Hubungi Kami </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    @if (Route::has('login'))
-                    <div class="top-right links">
-                        @if (Auth::check())
-                        @else
-                        <a href="{{ route('show') }}" class="btn btn-primary">Login</a>
-                        @endif
-                    </div>
+                <nav class="main-navigation">
+                    <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="{{ route('index') }}" class="nav-link active">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('profile') }}" class="nav-link">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('upt') }}" class="nav-link">UPT Dinas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('berita') }}" class="nav-link">Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('kontak') }}" class="nav-link"> Hubungi Kami </a>
+                    </li>
+                    </ul>
+                </nav>
+                @if (Route::has('login'))
+                <div class="top-right links">
+                    @if (Auth::check())
+                    @else
+                    <a href="{{ route('show') }}" class="btn btn-primary">Login</a>
                     @endif
                 </div>
+                @endif
+                <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle menu mobile" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="mobile-menu">
+                <ul class="mobile-nav-list">
+                <li class="nav-item">
+                    <a href="{{ route('index') }}" class="nav-link active">Beranda</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('profile') }}" class="nav-link">Profil</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('upt') }}" class="nav-link">UPT Dinas</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('berita') }}" class="nav-link">Berita</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('kontak') }}" class="nav-link"> Hubungi Kami </a>
+                </li>
+                </ul>
             </div>
         </header>
 
         <main class="main-content mt-4">
-            <div class="container">
+            <div class="container ">
                 <nav class="breadcrumb">
                     <ul class="breadcrumb-list">
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('index') }}" class="breadcrumb-link">Beranda</a>
+                        <li class="breadcrumb-item ">
+                            <a href="{{ route('index') }}" class="text-decoration-none breadcrumb-link">Beranda</a>
                         </li>
                         <li class="breadcrumb-item">
                             <a href="{{ route('berita') }}" class="breadcrumb-link">Berita</a>

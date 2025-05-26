@@ -52,6 +52,18 @@
                         <span>Approve Beranda</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kecamatan.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Approve Kecamatan</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kelurahan.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Approve Kelurahan</span>
+                    </a>
+                </li>
             @else
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.layanan') }}">
@@ -77,6 +89,18 @@
                     <a class="nav-link" href="{{ route('beranda.index') }}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Beranda</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kecamatan.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Kecamatan</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kelurahan.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Kelurahan</span>
                     </a>
                 </li>
             @endif

@@ -27,58 +27,82 @@
             <hr class="sidebar-divider my-0">
 
             @if ($role == 'admin')
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('layanan.admin') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Approve Layanan</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('puskesmas.admin') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Approve Puskesmas</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('layanan.admin') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Approve Layanan</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('puskesmas.admin') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Approve Puskesmas</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('berita.admin') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Approve Berita</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('beranda.admin') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Approve Beranda</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('berita.admin') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Approve Berita</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('beranda.admin') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Approve Beranda</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kecamatan.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Approve Kecamatan</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kelurahan.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Approve Kelurahan</span>
+                    </a>
+                </li>
             @else
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.layanan') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Layanan</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('user.layanan') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Layanan</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('puskesmas.index') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Puskesmas</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('berita.index') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Berita</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('puskesmas.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Puskesmas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('berita.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Berita</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('beranda.index') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Beranda</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('beranda.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Beranda</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kecamatan.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Kecamatan</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kelurahan.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Kelurahan</span>
+                    </a>
+                </li>
             @endif
             <hr class="sidebar-divider d-none d-md-block">
 

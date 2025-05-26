@@ -50,11 +50,23 @@
                         <span>Approve Beranda</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kecamatan.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Kecamatan</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kelurahan.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Approve Kelurahan</span>
+                    </a>
+                </li>
             @else
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.layanan') }}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Layanan</span>
+                        <span>Approve Layanan</span>
                     </a>
                 </li>
 
@@ -75,6 +87,18 @@
                     <a class="nav-link" href="{{ route('beranda.index') }}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Beranda</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kecamatan.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Kecamatan</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kelurahan.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Kelurahan</span>
                     </a>
                 </li>
             @endif
@@ -108,12 +132,22 @@
                             <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat Puskesmas">
                         </div>
                         <div class="mb-3">
-                            <label for="kecamatan" class="form-label">Kecamatan Puskesmas</label>
-                            <input type="text" class="form-control" id="kecamatan" name="kecamatan" placeholder="Masukkan kecamatan Puskesmas">
+                            <label for="kecamatan" class="form-label">Nama Kecamatan</label>
+                            <select class="form-select" id="id_kecamatan" name="kecamatan" required>
+                                <option value="">-- Pilih Kecamatan --</option>
+                                @foreach ($kecamatan as $k)
+                                    <option value="{{ $k->nama }}" name="id_kecamatan">{{ $k->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3">
-                            <label for="kelurahan" class="form-label">Kelurahan Puskesmas</label>
-                            <input type="text" class="form-control" id="kelurahan" name="kelurahan" placeholder="Masukkan kelurahan Puskesmas">
+                            <label for="kelurahan" class="form-label">Nama kelurahan</label>
+                            <select class="form-select" id="kelurahan" name="kelurahan" required>
+                                <option value="">-- Pilih Kelurahan --</option>
+                                @foreach ($kelurahan as $k)
+                                    <option value="{{ $k->nama }}" name="kelurahan">{{ $k->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="no_telp" class="form-label">No Telepon Puskesmas</label>

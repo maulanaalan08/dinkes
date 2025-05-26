@@ -58,20 +58,20 @@
       </div>
       <div id="mobile-menu" class="mobile-menu">
         <ul class="mobile-nav-list">
-          <li class="mobile-nav-item">
-            <a href="index.html" class="mobile-nav-link"> Beranda </a>
+          <li class="nav-item">
+            <a href="{{ route('index') }}" class="nav-link active">Beranda</a>
           </li>
-          <li class="mobile-nav-item">
-            <a href="profil.html" class="mobile-nav-link">Profil</a>
+          <li class="nav-item">
+            <a href="{{ route('profile') }}" class="nav-link">Profil</a>
           </li>
-          <li class="mobile-nav-item">
-            <a href="upt.html" class="mobile-nav-link">UPT Dinas</a>
+          <li class="nav-item">
+            <a href="{{ route('upt') }}" class="nav-link">UPT Dinas</a>
           </li>
-          <li class="mobile-nav-item">
-            <a href="berita.html" class="mobile-nav-link">Berita</a>
+          <li class="nav-item">
+            <a href="{{ route('berita') }}" class="nav-link">Berita</a>
           </li>
-          <li class="mobile-nav-item">
-            <a href="kontak.html" class="mobile-nav-link"> Hubungi Kami </a>
+          <li class="nav-item">
+            <a href="{{ route('kontak') }}" class="nav-link"> Hubungi Kami </a>
           </li>
         </ul>
       </div>

@@ -56,3 +56,23 @@ Route::get('/beranda/edit/{id}', 'BerandaController@edit')->middleware(['auth', 
 Route::put('/beranda/update/{id}', 'BerandaController@update')->middleware(['auth', 'role:admin|user'])->name('beranda.update');
 Route::get('/beranda/admin', 'AdminController@beranda')->middleware(['auth', 'role:admin'])->name('beranda.admin');
 Route::post('/beranda/status/{id}', 'AdminController@aproveBeranda')->middleware(['auth', 'role:admin'])->name('beranda.aprove');
+
+//Kecamatan
+Route::get('/camat', 'KecamatanController@index')->middleware(['auth', 'role:admin|user'])->name('kecamatan.index');
+Route::get('/kecamatan/create', 'kecamatanController@create')->middleware(['auth', 'role:admin|user'])->name('kecamatan.create');
+Route::post('/kecamatan/store', 'kecamatanController@store')->middleware(['auth', 'role:admin|user'])->name('kecamatan.store');
+Route::delete('/kecamatan/delete{id}', 'kecamatanController@destroy')->middleware(['auth', 'role:admin|user'])->name('kecamatan.destroy');
+Route::get('/kecamatan/edit/{id}', 'kecamatanController@edit')->middleware(['auth', 'role:admin|user'])->name('kecamatan.edit');
+Route::put('/kecamatan/update/{id}', 'kecamatanController@update')->middleware(['auth', 'role:admin|user'])->name('kecamatan.update');
+Route::get('/kecamatan/admin', 'AdminController@kecamatan')->middleware(['auth', 'role:admin'])->name('kecamatan.admin');
+Route::post('/kecamatan/status/{id}', 'AdminController@aprovekecamatan')->middleware(['auth', 'role:admin'])->name('kecamatan.aprove');
+
+//kelurahan
+Route::get('/kelurahan', 'KelurahanController@index')->middleware(['auth', 'role:admin|user'])->name('kelurahan.index');
+Route::get('/kelurahan/create', 'kelurahanController@create')->middleware(['auth', 'role:admin|user'])->name('kelurahan.create');
+Route::post('/kelurahan/store', 'kelurahanController@store')->middleware(['auth', 'role:admin|user'])->name('kelurahan.store');
+Route::delete('/kelurahan/delete{id}', 'kelurahanController@destroy')->middleware(['auth', 'role:admin|user'])->name('kelurahan.destroy');
+Route::get('/kelurahan/edit/{id}', 'kelurahanController@edit')->middleware(['auth', 'role:admin|user'])->name('kelurahan.edit');
+Route::put('/kelurahan/update/{id}', 'kelurahanController@update')->middleware(['auth', 'role:admin|user'])->name('kelurahan.update');
+Route::get('/kelurahan/admin', 'AdminController@kelurahan')->middleware(['auth', 'role:admin'])->name('kelurahan.admin');
+Route::post('/kelurahan/status/{id}', 'AdminController@aprovekelurahan')->middleware(['auth', 'role:admin'])->name('kelurahan.aprove');

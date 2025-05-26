@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,7 +9,7 @@
     <title>Dinas Kesehatan Surabaya</title>
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -117,47 +115,35 @@
             <br>
             <div id="content">
                 <div class="container-fluid">
-                    <h1 class="h3 mb-2 text-gray-800">Edit Puskesmas</h1>
-                    <form action="{{ route('puskesmas.update', $puskesmas->id_data_puskesmas) }}" method="POST" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                        {{ method_field('PUT') }}                         
-                        <input type="hidden" name="id_data_puskesmas" value="{{ $puskesmas->id_data_puskesmas }}">
+                    <h1 class="h3 mb-2 text-gray-800">Tambah Kelurahan</h1>
+                    <form method="post" action="{{ route('kelurahan.store') }}">
+                        {{ csrf_field() }} 
                         <div class="mb-3">
-                            <label>Nama Puskesmas</label>
-                            <input type="text" class="form-control" name="nama" value="{{ $puskesmas->nama }}">
+                            <label for="id_kecamatan" class="form-label">Nama Kecamatan</label>
+                            <select class="form-select" id="id_kecamatan" name="id_kecamatan" required>
+                                <option value="">-- Pilih Jenis --</option>
+                                @foreach ($kecamatan as $k)
+                                    <option value="{{ $k->id }}" name="id_kecamatan">{{ $k->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3">
-                            <label>Nama Kepala Puskesmas</label>
-                            <input type="text" class="form-control" name="kepala_puskesmas" value="{{ $puskesmas->kepala_puskesmas }}">
+                            <label for="nama" class="form-label">Nama Kelurahan</label>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Kelurahan">
                         </div>
-                        <div class="mb-3">
-                            <label>Alamat</label>
-                            <input type="text" class="form-control" name="alamat" value="{{ $puskesmas->alamat }}">
-                        </div>
-                        <div class="mb-3">
-                            <label>Kecamatan</label>
-                            <input type="text" class="form-control" name="kecamatan" value="{{ $puskesmas->kecamatan }}">
-                        </div>
-                        <div class="mb-3">
-                            <label>Kelurahan</label>
-                            <input type="text" class="form-control" name="kelurahan" value="{{ $puskesmas->kelurahan }}">
-                        </div>
-                        <div class="mb-3">
-                            <label>No Telepon</label>
-                            <input type="number" class="form-control" name="no_telp" value="{{ $puskesmas->no_telp }}">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2020</span>
-                        </div>
-                    </div>
-                </footer>
             </div>
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2024</span>
+                    </div>
+                </div>
+            </footer>
         </div>
+    </div>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

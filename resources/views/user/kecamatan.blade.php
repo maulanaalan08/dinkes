@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,8 +9,8 @@
     <title>Dinas Kesehatan Surabaya</title>
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -117,47 +115,68 @@
             <br>
             <div id="content">
                 <div class="container-fluid">
-                    <h1 class="h3 mb-2 text-gray-800">Edit Puskesmas</h1>
-                    <form action="{{ route('puskesmas.update', $puskesmas->id_data_puskesmas) }}" method="POST" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                        {{ method_field('PUT') }}                         
-                        <input type="hidden" name="id_data_puskesmas" value="{{ $puskesmas->id_data_puskesmas }}">
-                        <div class="mb-3">
-                            <label>Nama Puskesmas</label>
-                            <input type="text" class="form-control" name="nama" value="{{ $puskesmas->nama }}">
+                    <h1 class="h3 mb-2 text-gray-800">Tabel Kecamatan</h1>
+                    <p class="mb-4">Ini adalah dashboard untuk Tabel Kecamatan.</p>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Data Kecamatan</h6>
                         </div>
-                        <div class="mb-3">
-                            <label>Nama Kepala Puskesmas</label>
-                            <input type="text" class="form-control" name="kepala_puskesmas" value="{{ $puskesmas->kepala_puskesmas }}">
+                        
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($kecamatan as $k)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $k->nama }}</td>
+                                            <td>
+                                                @if ($role == 'admin')    
+                                                    <form action="{{ route('kecamatan.aprove', $k->id) }}" method="POST" >
+                                                        {{ csrf_field() }}
+                                                        <button type="submit" class="btn btn-sm btn-{{ $k->status === 'active' ? 'success' : 'secondary' }}">
+                                                            {{ $k->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <form action="{{ route('layanan.destroy', $k->id) }}" method="POST">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                    <a href="{{ route('kecamatan.edit', $k->id) }}" class="btn btn-warning">Edit</a>
+                                                @endif  
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                    @if ($role == 'user')
+                                        <a href="/kecamatan/create" class="btn btn-primary mb-2">Tambah</a>
+                                    @else
+                                    @endif
+                                </table>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label>Alamat</label>
-                            <input type="text" class="form-control" name="alamat" value="{{ $puskesmas->alamat }}">
-                        </div>
-                        <div class="mb-3">
-                            <label>Kecamatan</label>
-                            <input type="text" class="form-control" name="kecamatan" value="{{ $puskesmas->kecamatan }}">
-                        </div>
-                        <div class="mb-3">
-                            <label>Kelurahan</label>
-                            <input type="text" class="form-control" name="kelurahan" value="{{ $puskesmas->kelurahan }}">
-                        </div>
-                        <div class="mb-3">
-                            <label>No Telepon</label>
-                            <input type="number" class="form-control" name="no_telp" value="{{ $puskesmas->no_telp }}">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </form>
-                </div>
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2020</span>
-                        </div>
+                        {{-- {{ $kecamatan->links() }} --}}
                     </div>
-                </footer>
+                </div>
             </div>
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
         </div>
+    </div>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
