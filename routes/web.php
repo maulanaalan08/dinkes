@@ -16,6 +16,8 @@ Route::get('/home', 'HomeController@index');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/Login', 'Auth\LoginController@showLoginForm')->name('show');
 Route::post('/Login', 'Auth\LoginController@login')->name('login');
+Route::get('/register', 'Auth\RegisterController@showRegisterForm')->name('show');
+Route::post('/register', 'Auth\RegisterController@create')->name('register');
 
 //layanan
 Route::get('/layanan', 'LayananController@index')->middleware(['auth', 'role:admin|user'])->name('user.layanan');
