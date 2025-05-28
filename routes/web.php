@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
-Route::get('/', 'PenggunaController@index')->name('index');
+Route::get('/index', 'PenggunaController@index')->name('index');
 Route::get('/profile', 'PenggunaController@profile')->name('profile');
 Route::get('/upt', 'PenggunaController@upt')->name('upt');
 Route::get('/pengumuman', 'PenggunaController@berita')->name('berita');
@@ -14,10 +14,10 @@ Route::get('/berita/detail/{id}', 'PenggunaController@beritaDetail')->name('beri
 Route::get('/kontak', 'PenggunaController@kontak')->name('kontak');
 Route::get('/home', 'HomeController@index');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('/Login', 'Auth\LoginController@showLoginForm')->name('show');
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('show');
 Route::post('/Login', 'Auth\LoginController@login')->name('login');
 Route::get('/register', 'Auth\RegisterController@showRegisterForm')->name('show');
-Route::post('/register', 'Auth\RegisterController@create')->name('register');
+Route::post('/register', 'Auth\RegisterController@register')->name('register');
 
 //layanan
 Route::get('/layanan', 'LayananController@index')->middleware(['auth', 'role:admin|user'])->name('user.layanan');
