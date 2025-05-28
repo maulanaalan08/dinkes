@@ -91,18 +91,6 @@
                         <span>Beranda</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kecamatan.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Kecamatan</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kelurahan.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Kelurahan</span>
-                    </a>
-                </li>
             @endif
             <hr class="sidebar-divider d-none d-md-block">
 

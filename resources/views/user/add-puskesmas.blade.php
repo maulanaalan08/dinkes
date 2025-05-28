@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,82 +26,58 @@
             <hr class="sidebar-divider my-0">
 
             @if ($role == 'admin')
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('layanan.admin') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Layanan</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('puskesmas.admin') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Puskesmas</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('layanan.admin') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Approve Layanan</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('puskesmas.admin') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Approve Puskesmas</span>
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('berita.admin') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Berita</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('beranda.admin') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Beranda</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kecamatan.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Kecamatan</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kelurahan.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Kelurahan</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('berita.admin') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Approve Berita</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('beranda.admin') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Approve Beranda</span>
+                </a>
+            </li>
             @else
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.layanan') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Layanan</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('user.layanan') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Layanan</span>
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('puskesmas.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Puskesmas</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('berita.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Berita</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('puskesmas.index') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Puskesmas</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('berita.index') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Berita</span>
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('beranda.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Beranda</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kecamatan.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Kecamatan</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kelurahan.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Kelurahan</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('beranda.index') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Beranda</span>
+                </a>
+            </li>
             @endif
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -117,7 +94,7 @@
                 <div class="container-fluid">
                     <h1 class="h3 mb-2 text-gray-800">Tambah Puskesmas</h1>
                     <form method="post" action="{{ route('puskesmas.create') }}" enctype="multipart/form-data">
-                        {{ csrf_field() }} 
+                        {{ csrf_field() }}
 
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama Puskesmas</label>
