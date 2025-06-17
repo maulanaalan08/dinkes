@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +22,7 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">Dinas Kesehatan Surabaya </div>
             </a>
-            <hr class="sidebar-divider my-0">
+            <hr class="sidebar-divider my-2">
 
             @if ($role == 'admin')
                 <li class="nav-item">
@@ -51,7 +50,7 @@
                         <span>Approve Beranda</span>
                     </a>
                 </li>
-                
+
                 <hr class="sidebar-divider my-0">
 
                 <li class="nav-item">
@@ -101,11 +100,11 @@
             <br>
             <div id="content">
                 <div class="container-fluid">
-                    <h1 class="h3 mb-2 text-gray-800">Tabel Berita</h1>
-                    <p class="mb-4">Ini adalah dashboard untuk Tabel Berita.</p>
+                    <h1 class="h3 mb-2 text-gray-800">Tabel Pengaduan</h1>
+                    <p class="mb-4">Ini adalah dashboard untuk Tabel Pengaduan.</p>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Data Berita</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data Pengaduan</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -113,70 +112,41 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Judul Berita</th>
-                                            <th>Detail Berita</th>
-                                            <th>Jenis Berita</th>
-                                            <th>Gambar Berita</th>
-                                            <th>Tanggal Upload</th>
-                                            <th>Action</th>
+                                            <th>Nama</th>
+                                            <th>Nomor Telepon</th>
+                                            <th>Aduan</th>
+                                            {{-- <th>Action</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($berita as $b)
+                                        @foreach ($pengaduan as $p)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $b->judul }}</td>
-                                            <td>{{ $b->detail }}</td>
-                                            <td>{{ $b->jenis_berita }}</td>
-                                            <td>
-                                                @if($b->gambar)
-                                                    <img src="{{ asset('berita/' . $b->gambar) }}" width="100" alt="gambar">
-                                                @else
-                                                    Tidak ada gambar
-                                                @endif
-                                            </td>
-                                            <td>{{ $b->tanggal }}</td>
-                                            <td>
-                                                @if ($role == 'admin')
-                                                    <form action="{{ route('berita.setuju', $b->id_berita) }}" method="POST">
-                                                        {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-sm btn-{{ $b->status === 'active' ? 'success' : 'secondary' }}">
-                                                            {{ $b->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
-                                                        </button>
-                                                    </form>
-                                                    <form action="{{ route('berita.destroy', $b->id_berita) }}" method="POST">
-                                                        {{ csrf_field() }}
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>
-                                                    <a href="{{ route('berita.edit', $b->id_berita) }}" class="btn btn-warning">Edit</a>
-                                                @else
-                                                    <form action="{{ route('berita.destroy', $b->id_berita) }}" method="POST">
-                                                        {{ csrf_field() }}
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>
-                                                    <a href="{{ route('berita.edit', $b->id_berita) }}" class="btn btn-warning">Edit</a>
-                                                @endif
-                                            </td>
+                                            <td>{{ $p->nama }}</td>
+                                            <td>{{ $p->pesan }}</td>
+                                            <td>{{ $p->no_telp }}</td>
+                                            {{-- <td>
+                                                <form action="{{ route('layanan.aprove', $p->id_layanan) }}" method="POST" >
+                                                    {{ csrf_field() }}
+                                                    <button type="submit" class="btn mr-1 btn-{{ $p->status === 'active' ? 'success' : 'secondary' }}">
+                                                        {{ $p->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
+                                                    </button>
+                                                </form>
+                                            </td> --}}
                                         </tr>
                                         @endforeach
                                     </tbody>
-                                    @if ($role == 'user')
-                                        <a href="/berita/store" class="btn btn-primary mb-2">Tambah</a>
-                                    @else
-                                    @endif
                                 </table>
                             </div>
                         </div>
-                        {{ $berita->links() }}
+                        {{-- {{ $pengaduan->links() }} --}}
                     </div>
                 </div>
             </div>
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2024</span>
+                        <span>Copyright &copy; Your Website 2020</span>
                     </div>
                 </div>
             </footer>

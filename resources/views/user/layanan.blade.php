@@ -22,7 +22,7 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">Dinas Kesehatan Surabaya </div>
             </a>
-            <hr class="sidebar-divider my-0">
+            <hr class="sidebar-divider my-2">
 
             @if ($role == 'admin')
                 <li class="nav-item">
@@ -48,6 +48,15 @@
                     <a class="nav-link" href="{{ route('beranda.admin') }}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Approve Beranda</span>
+                    </a>
+                </li>
+
+                <hr class="sidebar-divider my-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('pengaduan.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Pengaduan</span>
                     </a>
                 </li>
             @else
@@ -123,22 +132,30 @@
                                                     <p>Tidak ada gambar</p>                                                
                                                 @endif
                                             </td>
-                                            <td>
-                                                @if ($role == 'admin')    
-                                                    <form action="{{ route('layanan.aprove', $b->id_layanan) }}" method="POST" >
-                                                        {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-sm btn-{{ $b->status === 'active' ? 'success' : 'secondary' }}">
-                                                            {{ $b->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
-                                                        </button>
-                                                    </form>
-                                                @else
-                                                    <form action="{{ route('layanan.destroy', $b->id_layanan) }}" method="POST">
-                                                        {{ csrf_field() }}
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>
-                                                    <a href="{{ route('layanan.edit', $b->id_layanan) }}" class="btn btn-warning">Edit</a>
-                                                @endif
+                                            <td >
+                                                <div class="row mx-auto">
+                                                    @if ($role == 'admin')
+                                                        <form action="{{ route('layanan.aprove', $b->id_layanan) }}" method="POST" >
+                                                            {{ csrf_field() }}
+                                                            <button type="submit" class="btn mr-1 btn-{{ $b->status === 'active' ? 'success' : 'secondary' }}">
+                                                                {{ $b->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
+                                                            </button>
+                                                        </form>
+                                                        <form action="{{ route('layanan.destroy', $b->id_layanan) }}" method="POST">
+                                                            {{ csrf_field() }}
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <button type="submit" class="btn mr-1 btn-danger">Delete</button>
+                                                        </form>
+                                                        <a href="{{ route('layanan.edit', $b->id_layanan) }}" class="btn btn-warning">Edit</a>
+                                                    @else
+                                                        <form action="{{ route('layanan.destroy', $b->id_layanan) }}" method="POST">
+                                                            {{ csrf_field() }}
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                        <a href="{{ route('layanan.edit', $b->id_layanan) }}" class="btn btn-warning">Edit</a>
+                                                    @endif
+                                                </div>
                                             </td>
                                         </tr>
                                         @endforeach

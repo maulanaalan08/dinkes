@@ -52,16 +52,13 @@
                         <span>Approve Beranda</span>
                     </a>
                 </li>
+                
+                <hr class="sidebar-divider my-0">
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kecamatan.index') }}">
+                    <a class="nav-link" href="{{ route('pengaduan.index') }}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Kecamatan</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kelurahan.index') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Approve Kelurahan</span>
+                        <span>Pengaduan</span>
                     </a>
                 </li>
             @else

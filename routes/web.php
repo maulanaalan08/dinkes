@@ -3,18 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-Auth::routes();
-Route::get('/index', 'PenggunaController@index')->name('index');
+Route::get('/', 'PenggunaController@index')->name('index');
 Route::get('/profile', 'PenggunaController@profile')->name('profile');
 Route::get('/upt', 'PenggunaController@upt')->name('upt');
 Route::get('/pengumuman', 'PenggunaController@berita')->name('berita');
-
-Route::get('/berita/detail/{id}', 'PenggunaController@beritaDetail')->name('berita.detail');
-
 Route::get('/kontak', 'PenggunaController@kontak')->name('kontak');
 Route::get('/home', 'HomeController@index');
+
+//authentikasi
+Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('/', 'Auth\LoginController@showLoginForm')->name('show');
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('show');
 Route::post('/Login', 'Auth\LoginController@login')->name('login');
 Route::get('/register', 'Auth\RegisterController@showRegisterForm')->name('show');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
@@ -28,6 +27,7 @@ Route::get('/layanan/edit/{id}', 'LayananController@edit')->middleware(['auth', 
 Route::put('/layanan/update/{id}', 'LayananController@update')->middleware(['auth', 'role:admin|user'])->name('layanan.update');
 Route::get('/layanan/admin', 'AdminController@index')->middleware(['auth', 'role:admin'])->name('layanan.admin');
 Route::post('/layanan/status/{id}', 'AdminController@aprove')->middleware(['auth', 'role:admin'])->name('layanan.aprove');
+
 
 //Puskesmas
 Route::get('/kesmas', 'PuskesmasController@index')->middleware(['auth', 'role:admin|user'])->name('puskesmas.index');
@@ -48,6 +48,7 @@ Route::get('/berita/edit/{id}', 'BeritaController@edit')->middleware(['auth', 'r
 Route::put('/berita/update/{id}', 'BeritaController@update')->middleware(['auth', 'role:admin|user'])->name('berita.update');
 Route::get('/berita/admin', 'AdminController@berita')->middleware(['auth', 'role:admin'])->name('berita.admin');
 Route::post('/berita/status/{id}', 'AdminController@aproveBerita')->middleware(['auth', 'role:admin'])->name('berita.setuju');
+Route::get('/berita/detail/{id}', 'PenggunaController@beritaDetail')->name('berita.detail');
 
 //Beranda
 Route::get('/pageawal', 'BerandaController@index')->middleware(['auth', 'role:admin|user'])->name('beranda.index');
@@ -78,3 +79,11 @@ Route::get('/kelurahan/edit/{id}', 'kelurahanController@edit')->middleware(['aut
 Route::put('/kelurahan/update/{id}', 'kelurahanController@update')->middleware(['auth', 'role:admin|user'])->name('kelurahan.update');
 Route::get('/kelurahan/admin', 'AdminController@kelurahan')->middleware(['auth', 'role:admin'])->name('kelurahan.admin');
 Route::post('/kelurahan/status/{id}', 'AdminController@aprovekelurahan')->middleware(['auth', 'role:admin'])->name('kelurahan.aprove');
+
+//pengaduan
+Route::get('/pengaduan', 'pengaduanController@index')->name('pengaduan.index');
+Route::get('/pengaduan/admin', 'pengaduanController@create')->name('pengaduan.create');
+Route::post('/pengaduan/store', 'pengaduanController@store')->name('pengaduan.store');
+Route::delete('/pengaduan/delete{id}', 'pengaduanController@destroy')->name('pengaduan.destroy');
+Route::get('/pengaduan/edit/{id}', 'pengaduanController@edit')->name('pengaduan.edit');
+Route::post('/pengaduan/status/{id}', 'AdminController@aprovepengaduan')->name('kelurahan.aprove');

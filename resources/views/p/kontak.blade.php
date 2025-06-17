@@ -32,7 +32,7 @@
           <nav class="main-navigation">
             <ul class="nav-list">
               <li class="nav-item">
-                <a href="{{ route('index') }}" class="nav-link active">Beranda</a>
+                <a href="{{ route('index') }}" class="nav-link">Beranda</a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('profile') }}" class="nav-link">Profil</a>
@@ -44,7 +44,7 @@
                 <a href="{{ route('berita') }}" class="nav-link">Berita</a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('kontak') }}" class="nav-link"> Hubungi Kami </a>
+                <a href="{{ route('kontak') }}" class="nav-link active"> Hubungi Kami </a>
               </li>
             </ul>
           </nav>
@@ -56,10 +56,10 @@
           </button>
         </div>
       </div>
-      <div id="mobile-menu" class="mobile-menu">
+      <div id="mobile-menu" class="container mobile-menu">
         <ul class="mobile-nav-list">
           <li class="nav-item">
-            <a href="{{ route('index') }}" class="nav-link active">Beranda</a>
+            <a href="{{ route('index') }}" class="nav-link">Beranda</a>
           </li>
           <li class="nav-item">
             <a href="{{ route('profile') }}" class="nav-link">Profil</a>
@@ -71,7 +71,7 @@
             <a href="{{ route('berita') }}" class="nav-link">Berita</a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('kontak') }}" class="nav-link"> Hubungi Kami </a>
+            <a href="{{ route('kontak') }}" class="nav-link active"> Hubungi Kami </a>
           </li>
         </ul>
       </div>
@@ -147,18 +147,19 @@
           </div>
           <div class="contact-form-container">
             <h3 class="contact-subtitle">Kirim Pesan</h3>
-            <form class="contact-form">
+            <form class="contact-form" method="post" action="{{ route('pengaduan.store') }}">
+              {{ csrf_field() }} 
               <div class="form-group">
                 <label for="nama" class="form-label">Nama</label>
-                <input type="text" id="nama" class="form-input" required />
+                <input type="text" id="nama" name="nama" class="form-input" required />
               </div>
               <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" class="form-input" required />
+                <label for="no_telp" class="form-label">Nomor Telepon</label>
+                <input type="number" id="no_telp" name="no_telp" class="form-input" required />
               </div>
               <div class="form-group">
                 <label for="pesan" class="form-label">Pesan</label>
-                <textarea id="pesan" rows="4" class="form-textarea" required></textarea>
+                <textarea id="pesan" rows="4" name="pesan" class="form-textarea" required></textarea>
               </div>
               <button type="submit" class="btn btn-primary">Kirim Pesan</button>
             </form>

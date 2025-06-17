@@ -12,7 +12,7 @@
 
 <body>
   <div id="app" class="site-container">
-    <header class="site-header">
+    <header class="site-header bg-gradient-secondary">
       <div class="container header-container">
         <div class="logo-container">
           <img src="assets/Logo Dinas.png" alt="Logo Dinas Pemerintah" class="logo-image" />
@@ -49,7 +49,7 @@
           </button>
         </div>
       </div>
-      <div id="mobile-menu" class="mobile-menu">
+      <div id="mobile-menu" class="container mobile-menu">
         <ul class="mobile-nav-list">
           <li class="nav-item">
             <a href="{{ route('index') }}" class="nav-link active">Beranda</a>
@@ -84,56 +84,71 @@
             <label for="password" class="form-label">Password</label>
             <input type="password" id="password" class="form-input" required />
           </div>
-          <div class="form-actions">
+          {{-- <div class="form-actions">
             <button type="button" id="cancel-login" class="btn btn-secondary">Batal</button>
             <button type="submit" class="btn btn-primary">Login</button>
-          </div>
+          </div> --}}
         </form>
       </div>
     </div>
 
     <main class="main-content">
-      <section id="beranda-tab" class="content-tab active">
-        <div class="d-flex justify-content-center bg-secondary bg-gradient bg-opacity-75">
-          <div id="carouselExampleCaptions" class="container px-5 carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner row w-50 mx-auto">
-              @foreach ($beranda as $b)
-              <div class=" carousel-item @if($loop->first) active @endif">
-                <img src="{{ asset('beranda/' . $b->gambar) }}" class="d-block w-100" alt="{{ $b->gambar }}">
-                <div class="text-dark carousel-caption d-none d-md-block">
-                  <h3>{{ $b->judul }}</h5>
-                    <p>{{ $b->detail }}</p>
-                </div>
-              </div>
-              @endforeach
+  <section id="beranda-tab" class="content-tab active">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        @foreach ($beranda as $index => $b)
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $index }}" class="{{ $loop->first ? 'active' : '' }}" aria-current="{{ $loop->first ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}" style="background-color: rgba(255, 255, 255, 0.7); border: 1px solid rgba(0, 0, 0, 0.2);"></button>
+        @endforeach
+      </div>
+      <div class="carousel-inner">
+        @foreach ($beranda as $b)
+          <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+            <img src="{{ asset('beranda/' . $b->gambar) }}" class="d-block w-100" style="width: 100%; height: 600px; object-fit: fit;" alt="{{ $b->judul }}">
+            {{-- Bagian caption dengan CSS inline --}}
+            <div class="carousel-caption d-md-block text-white"
+                 style="
+                   background-color: rgba(0, 0, 0, 0.6);
+                   padding: 20px 40px;
+                   left: 0;
+                   right: 0;
+                   bottom: 40px; /* Sesuaikan ini untuk posisi di atas indikator */
+                   z-index: 10;
+                   text-align: center;
+                   backdrop-filter: blur(1px);
+                   -webkit-backdrop-filter: blur(1px);
+                 ">
+              <h3 class="display-5 fw-bold" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">{{ $b->judul }}</h3>
+              <p class="lead" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">{{ $b->detail }}</p>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
           </div>
-        </div>
+        @endforeach
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
 
-        <div class="container section-container">
-          <h2 class="section-title text-center mb-4">Layanan Kami</h2>
-          <div class="row">
-            @foreach ($layanan as $l)
-            <div class="col-md-4 mb-4">
-              <div class="card h-100 text-center">
-                <img src="{{ asset('uploads/' . $l->gambar)}}" alt="{{ $l->gambar }}" class="service-image" style="width:400px; height:300px" />
-                <h3 class="service-title">{{ $l->judul }}</h3>
-                <p class="service-description">{{ $l->detail }}</p>
-              </div>
-            </div>
-            @endforeach
+    <div class="container section-container">
+      <h2 class="section-title text-center mb-4">Layanan Kami</h2>
+      <div class="row">
+        @foreach ($layanan as $l)
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 text-center">
+            <img src="{{ asset('uploads/' . $l->gambar)}}" alt="{{ $l->gambar }}" class="service-image" style="width:400px; height:300px" />
+            <h3 class="service-title">{{ $l->judul }}</h3>
+            <p class="service-description">{{ $l->detail }}</p>
           </div>
         </div>
-      </section>
-    </main>
+        @endforeach
+      </div>
+    </div>
+  </section>
+</main>
 
     <footer class="site-footer">
       <div class="container footer-container">

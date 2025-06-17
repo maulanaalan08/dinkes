@@ -11,7 +11,7 @@
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -49,6 +49,15 @@
                     <a class="nav-link" href="{{ route('beranda.admin') }}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Approve Beranda</span>
+                    </a>
+                </li>
+                
+                <hr class="sidebar-divider my-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('pengaduan.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Pengaduan</span>
                     </a>
                 </li>
             @else

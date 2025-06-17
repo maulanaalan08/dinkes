@@ -52,6 +52,15 @@
                         <span>Approve Beranda</span>
                     </a>
                 </li>
+                
+                <hr class="sidebar-divider my-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('pengaduan.index') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Pengaduan</span>
+                    </a>
+                </li>
             @else
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.layanan') }}">
@@ -127,19 +136,27 @@
                                             <td>{{ $b->no_telp }}</td>
                                             <td>
                                                 @if ($role == 'admin')
-                                                <form action="{{ route('puskesmas.setuju', $b->id_data_puskesmas) }}" method="POST">
-                                                    {{ csrf_field() }}
-                                                    <button type="submit" class="btn btn-sm btn-{{ $b->status === 'active' ? 'success' : 'secondary' }}">
-                                                        {{ $b->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
-                                                    </button>
-                                                </form>
+                                                    <div class="row mx-auto">
+                                                        <form action="{{ route('puskesmas.setuju', $b->id_data_puskesmas) }}" method="POST">
+                                                            {{ csrf_field() }}
+                                                            <button type="submit" class="btn mr-1 btn-{{ $b->status === 'active' ? 'success' : 'secondary' }}">
+                                                                {{ $b->status === 'active' ? 'Aktif' : 'Non-Aktif' }}
+                                                            </button>
+                                                        </form>
+                                                        <form action="{{ route('puskesmas.destroy', $b->id_data_puskesmas) }}" method="POST">
+                                                            {{ csrf_field() }}
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <button type="submit" class="btn btn-danger mr-1">Delete</button>
+                                                        </form>
+                                                        <a href="{{ route('puskesmas.edit', $b->id_data_puskesmas) }}" class="btn btn-warning">Edit</a>
+                                                    </div>
                                                 @else
-                                                <form action="{{ route('puskesmas.destroy', $b->id_data_puskesmas) }}" method="POST">
-                                                    {{ csrf_field() }}
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
-                                                <a href="{{ route('puskesmas.edit', $b->id_data_puskesmas) }}" class="btn btn-warning">Edit</a>
+                                                    <form action="{{ route('puskesmas.destroy', $b->id_data_puskesmas) }}" method="POST">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                    <a href="{{ route('puskesmas.edit', $b->id_data_puskesmas) }}" class="btn btn-warning">Edit</a>
                                                 @endif
                                             </td>
                                         </tr>

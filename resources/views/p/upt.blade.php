@@ -25,13 +25,13 @@
           <nav class="main-navigation">
             <ul class="nav-list">
               <li class="nav-item">
-                <a href="{{ route('index') }}" class="nav-link active">Beranda</a>
+                <a href="{{ route('index') }}" class="nav-link">Beranda</a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('profile') }}" class="nav-link">Profil</a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('upt') }}" class="nav-link">UPT Dinas</a>
+                <a href="{{ route('upt') }}" class="nav-link active">UPT Dinas</a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('berita') }}" class="nav-link">Berita</a>
@@ -49,7 +49,7 @@
           </button>
         </div>
       </div>
-      <div id="mobile-menu" class="mobile-menu">
+      <div id="mobile-menu" class="container mobile-menu">
         <ul class="mobile-nav-list">
           <li class="nav-item">
             <a href="{{ route('index') }}" class="nav-link active">Beranda</a>
